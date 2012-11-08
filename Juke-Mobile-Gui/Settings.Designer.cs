@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Juke_Mobile_Gui.Properties {
+namespace Juke_Mobile_Gui {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,7 +25,7 @@ namespace Juke_Mobile_Gui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\Juke-Mobile")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Temp\\UploadedFiles")]
         public string ServerUploadPath {
             get {
                 return ((string)(this["ServerUploadPath"]));
