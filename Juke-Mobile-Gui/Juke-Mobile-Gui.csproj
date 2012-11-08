@@ -89,11 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Controller\FileUploadController.cs" />
-=======
     <Compile Include="Controllers\FileUploadController.cs" />
->>>>>>> master
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
