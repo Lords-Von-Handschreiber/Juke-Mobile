@@ -48,5 +48,7 @@ $(document).ready(function () {
         });
     } else if (!IsUserNameSet()) {
         window.location.href = 'index.html';
+    } else if ($('#add-page').length > 0) {
+        $('#myTab a:first').tab('show');
     }
 });
