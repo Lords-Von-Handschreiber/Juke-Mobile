@@ -33,7 +33,8 @@ $(document).ready(function () {
 
         $('.form-signin').submit(function () {
             var userName = $('#username').val();
-            if (userName != '') {
+            if (!IsNullOrEmpty(userName) && userName.length >= 3) {
+                $('#usernameWarning').hide();
                 if ($('#remember').attr('checked'))
                     localStorage.setItem(lsUsernameKey, userName);
                 else
@@ -41,6 +42,7 @@ $(document).ready(function () {
 
                 window.location.href = 'list.html';
             } else {
+                $('#usernameWarning').show();
             }
             return false;
         });
