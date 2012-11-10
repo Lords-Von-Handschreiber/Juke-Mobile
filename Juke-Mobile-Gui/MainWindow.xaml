@@ -24,8 +24,8 @@
             <TextBlock Text="Server Status:"/>
             <TextBlock Text="Off"/>
             <Separator/>
-            <TextBlock Text="Tracks in the queue: "/>
-            <TextBlock Text="0"/>
+            <TextBlock Text="Tracks in the queue:"/>
+            <TextBlock Text="{Binding ElementName=QueueList, Path=Items.Count, Mode=OneWay}"/>
         </StatusBar>
         <Grid>
             <Grid.RowDefinitions>
