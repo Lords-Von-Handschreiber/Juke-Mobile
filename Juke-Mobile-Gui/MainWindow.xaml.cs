@@ -24,5 +24,10 @@ namespace Juke_Mobile_Gui
         {
             InitializeComponent();
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(0);
+        }
     }
 }
