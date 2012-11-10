@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juke-Mobile-Gui", "Juke-Mobile-Gui\Juke-Mobile-Gui.csproj", "{5BB5AD34-6F0D-4639-9901-E0FFA0794877}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juke-Mobile-Model", "Juke-Mobile-Model\Juke-Mobile-Model.csproj", "{9013F4B7-2FEF-43A2-8FE3-DABF60041CEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juke-Mobile-Core", "Juke-Mobile-Core\Juke-Mobile-Core.csproj", "{56D5211E-3847-43B9-A974-5A798DF1AC0C}"
@@ -15,16 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A9BD20
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juke-Mobile-Gui", "Juke-Mobile-Gui\Juke-Mobile-Gui.csproj", "{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5BB5AD34-6F0D-4639-9901-E0FFA0794877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BB5AD34-6F0D-4639-9901-E0FFA0794877}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BB5AD34-6F0D-4639-9901-E0FFA0794877}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BB5AD34-6F0D-4639-9901-E0FFA0794877}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9013F4B7-2FEF-43A2-8FE3-DABF60041CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9013F4B7-2FEF-43A2-8FE3-DABF60041CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9013F4B7-2FEF-43A2-8FE3-DABF60041CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{56D5211E-3847-43B9-A974-5A798DF1AC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56D5211E-3847-43B9-A974-5A798DF1AC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56D5211E-3847-43B9-A974-5A798DF1AC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

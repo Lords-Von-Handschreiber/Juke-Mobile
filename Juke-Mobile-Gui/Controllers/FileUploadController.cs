@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Formatting;
 using System.IO;
 using System.Collections.ObjectModel;
+using Juke_Mobile_Gui.Properties;
 
 namespace Juke_Mobile_Gui.Controllers
 {

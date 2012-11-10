@@ -1,0 +1,30 @@
+﻿<Window x:Class="Juke_Mobile_Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Juke-Mobile" ResizeMode="CanResizeWithGrip">
+    <DockPanel LastChildFill="False">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+            <StatusBar>
+                <TextBlock>Server Status:</TextBlock>
+                <TextBlock>Off</TextBlock>
+            </StatusBar>
+        </StackPanel>
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="_File" >
+                <MenuItem Header="_Exit" Command="ApplicationCommands.Close"/>
+            </MenuItem>
+            <MenuItem Header="_Server">
+                <MenuItem Header="_Start"/>
+                <MenuItem Header="Sto_p"/>
+            </MenuItem>
+            <MenuItem Header="_Player">
+                <MenuItem Header="_Play" Command="Play"/>
+                <MenuItem Header="Pau_se" Command="Pause"/>
+                <MenuItem Header="_Stop" Command="Stop"/>
+            </MenuItem>
+            <MenuItem Header="_Help" />
+        </Menu>
+        <Button Content="Dock=Left" DockPanel.Dock="Left"/>
+        <Button Content="Dock=Right" DockPanel.Dock="Right"/>
+    </DockPanel>
+</Window>
