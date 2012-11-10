@@ -5,15 +5,6 @@
         ResizeMode="CanResizeWithGrip" 
         MinWidth="500" MinHeight="400">
     <DockPanel LastChildFill="True">
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-            <StatusBar>
-                <TextBlock Text="Server Status:"/>
-                <TextBlock Text="Off"/>
-                <Separator/>
-                <TextBlock Text="Tracks in the queue: "/>
-                <TextBlock Text="0"/>
-            </StatusBar>
-        </StackPanel>
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Click="MenuItem_Click_1"/>
@@ -29,17 +20,37 @@
             </MenuItem>
             <MenuItem Header="_Help" />
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="Server Status:"/>
+            <TextBlock Text="Off"/>
+            <Separator/>
+            <TextBlock Text="Tracks in the queue: "/>
+            <TextBlock Text="0"/>
+        </StatusBar>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="Name:"/>
-            <ListBox Grid.Column="1">
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Player 1" TextAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Queue" TextAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Player 2" TextAlignment="Center"/>
+
+            
+            <ListBox Grid.Row="1" Grid.Column="1" Name="QueueList">
                 <ListBoxItem Content="Sonnentanz - Klangkarussel"/>
             </ListBox>
-            <Label Grid.Column="2" Content="Name:"/>
+
+            <MediaElement Grid.Row="2" Grid.Column="0" Name="Player1"/>
+            <Slider Grid.Row="2" Grid.Column="1" Minimum="-100" Value="-100" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="10" ToolTip="Balance"/>
+            <MediaElement Grid.Row="2" Grid.Column="2" Name="Player2"/>
         </Grid>
     </DockPanel>
 </Window>
