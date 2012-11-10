@@ -17,24 +17,38 @@
     <script src="js/modernizr.custom.min.js"></script>
     <script src="js/load.js"></script>
 </head>
-<body id="signin-page">
+<body id="info-page">
     <div class="container-narrow">
 
         <div class="masthead">
+            <ul class="nav nav-pills pull-right">
+                <li><a href="list.html">Playlist</a></li>
+                <li class="active"><a href="info.html">Info</a></li>
+            </ul>
             <h3 class="muted">Juke-Mobile</h3>
         </div>
 
         <hr>
 
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Bitte gib einen Benutzernamen ein</h2>
-            <input id="username" type="text" class="input-block-level" placeholder="Benutzername">
-            <label class="checkbox">
-                <input id="remember" type="checkbox" value="remember-me">
-                Remember me
-            </label>
-            <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-        </form>
+        <div class="jumbotron">
+            <h1>Die Jukebox für jede Party!</h1>
+            <p class="lead">Lasst die Jukebox für euch arbeiten! Ihr könnt die Party in voll Zügen geniessen ohne dass sich jemand um die Musik kümmern muss. Dies kann jeder Gast selbst machen.</p>
+            <a class="btn btn-large btn-success" href="list.html">Jetzt die Playlist mitgestalten</a>
+        </div>
+
+        <hr>
+
+        <div class="row-fluid">
+            <div class="span6">
+                <h4>Playlist</h4>
+                <p>Aktuell sind <strong>3 Lieder</strong> in der Playlist.</p>
+            </div>
+
+            <div class="span6">
+                <h4>Nächstes Lied (in 2:04)</h4>
+                <p><strong>Sonnentanz</strong> von <strong>Klangkarusell</strong></p>
+            </div>
+        </div>
 
         <hr>
 
