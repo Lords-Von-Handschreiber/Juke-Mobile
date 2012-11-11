@@ -13,9 +13,9 @@ using Juke_Mobile_Gui.Properties;
 
 namespace Juke_Mobile_Gui
 {
-    public class HttpSelfHostConfigurationFactory
+    public static class HttpSelfHostConfigurationFactory
     {
-        public HttpSelfHostConfiguration CreateInstance()
+        public static HttpSelfHostConfiguration CreateInstance()
         {
             var cfg = new HttpSelfHostConfiguration(Settings.Default.ServerURLAndPort);
 

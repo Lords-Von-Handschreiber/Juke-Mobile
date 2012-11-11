@@ -39,12 +39,10 @@ namespace Juke_Mobile_Gui
             if (server != null)
                 return;
 
-            HttpSelfHostConfigurationFactory fact = new HttpSelfHostConfigurationFactory();
-            HttpSelfHostConfiguration cfg = fact.CreateInstance();
+            HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
             server = new HttpSelfHostServer(cfg);                       
             server.OpenAsync().Wait();
             txtServerStatus.Text = "running"; 
-
         }
 
         private void End_Click(object sender, RoutedEventArgs e)
