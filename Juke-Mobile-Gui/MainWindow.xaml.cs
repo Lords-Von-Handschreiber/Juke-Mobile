@@ -43,7 +43,7 @@ namespace Juke_Mobile_Gui
             HttpSelfHostConfiguration cfg = fact.CreateInstance();
             server = new HttpSelfHostServer(cfg);                       
             server.OpenAsync().Wait();
-            txtServerStatus.Text = "On"; 
+            txtServerStatus.Text = "running"; 
 
         }
 
@@ -59,7 +59,7 @@ namespace Juke_Mobile_Gui
             server.CloseAsync().Wait();
             server.Dispose();
             server = null;
-            txtServerStatus.Text = "Off"; 
+            txtServerStatus.Text = "stopped"; 
         }
     }
 }

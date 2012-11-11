@@ -9,7 +9,7 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Click="MenuItem_Click_1"/>
             </MenuItem>
-            <MenuItem Header="_Server">
+            <MenuItem Header="_Web Server">
                 <MenuItem Header="_Start" Click="Start_Click"/>
                 <MenuItem Header="Sto_p" Click="End_Click"/>
             </MenuItem>
@@ -21,8 +21,8 @@
             <MenuItem Header="_Help" />
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
-            <TextBlock Text="Server Status:"/>
-            <TextBlock Text="Off" Name="txtServerStatus" />
+            <TextBlock Text="Web Server is"/>
+            <TextBlock Text="stopped" Name="txtServerStatus" />
             <Separator/>
             <TextBlock Text="Tracks in the queue:"/>
             <TextBlock Text="{Binding ElementName=QueueList, Path=Items.Count, Mode=OneWay}"/>
