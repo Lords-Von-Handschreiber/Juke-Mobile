@@ -10,8 +10,8 @@
                 <MenuItem Header="_Exit" Click="MenuItem_Click_1"/>
             </MenuItem>
             <MenuItem Header="_Server">
-                <MenuItem Header="_Start"/>
-                <MenuItem Header="Sto_p"/>
+                <MenuItem Header="_Start" Click="Start_Click"/>
+                <MenuItem Header="Sto_p" Click="End_Click"/>
             </MenuItem>
             <MenuItem Header="_Player">
                 <MenuItem Header="_Play" Command="Play"/>
@@ -22,7 +22,7 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <TextBlock Text="Server Status:"/>
-            <TextBlock Text="Off"/>
+            <TextBlock Text="Off" Name="txtServerStatus" />
             <Separator/>
             <TextBlock Text="Tracks in the queue:"/>
             <TextBlock Text="{Binding ElementName=QueueList, Path=Items.Count, Mode=OneWay}"/>

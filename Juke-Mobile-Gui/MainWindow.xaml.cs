@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Http.SelfHost;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -20,6 +22,7 @@ namespace Juke_Mobile_Gui
     /// </summary>
     public partial class MainWindow : Window
     {
+        HttpSelfHostServer server;
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +30,35 @@ namespace Juke_Mobile_Gui
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
+            CloseServer();
             Application.Current.Shutdown(0);
+        }
+
+        private void Start_Click(object sender, RoutedEventArgs e)
+        {
+            if (server != null)
+                return;
+
+            HttpSelfHostConfigurationFactory fact = new HttpSelfHostConfigurationFactory();
+            HttpSelfHostConfiguration cfg = fact.CreateInstance();
+            server = new HttpSelfHostServer(cfg);                       
+            server.OpenAsync().Wait();
+            txtServerStatus.Text = "On"; 
+
+        }
+
+        private void End_Click(object sender, RoutedEventArgs e)
+        {
+            CloseServer();
+        }
+
+        private void CloseServer()
+        {
+            if (server == null)
+                return;
+            server.CloseAsync().Wait();
+            server = null;
+            txtServerStatus.Text = "Off"; 
         }
     }
 }

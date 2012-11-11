@@ -66,6 +66,9 @@
     <Reference Include="NetTopologySuite">
       <HintPath>..\packages\RavenDB.Database.1.2.2139-Unstable\lib\net40\NetTopologySuite.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PowerCollections">
       <HintPath>..\packages\RavenDB.Database.1.2.2139-Unstable\lib\net40\PowerCollections.dll</HintPath>
     </Reference>
