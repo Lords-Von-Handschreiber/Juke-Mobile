@@ -72,6 +72,8 @@
     <Reference Include="PowerCollections">
       <HintPath>..\packages\RavenDB.Database.1.2.2139-Unstable\lib\net40\PowerCollections.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.Client.1.2.2139-Unstable\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
@@ -90,13 +92,16 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoublePlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

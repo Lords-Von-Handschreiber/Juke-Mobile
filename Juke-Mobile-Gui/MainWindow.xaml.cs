@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Juke_Mobile_Core;
+using System;
 using System.Web.Http.SelfHost;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Juke_Mobile_Gui
 {
@@ -22,10 +12,16 @@ namespace Juke_Mobile_Gui
     /// </summary>
     public partial class MainWindow : Window
     {
-        HttpSelfHostServer server;
+        HttpSelfHostServer _server;
+
+        DoublePlayer _player;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
+
             Application.Current.Exit += CloseServer;
         }
 
@@ -36,13 +32,13 @@ namespace Juke_Mobile_Gui
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            if (server != null)
+            if (_server != null)
                 return;
 
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
-            server = new HttpSelfHostServer(cfg);                       
-            server.OpenAsync().Wait();
-            txtServerStatus.Text = "running"; 
+            _server = new HttpSelfHostServer(cfg);
+            _server.OpenAsync().Wait();
+            txtServerStatus.Text = "running";
         }
 
         private void End_Click(object sender, RoutedEventArgs e)
@@ -52,27 +48,37 @@ namespace Juke_Mobile_Gui
 
         private void CloseServer(object sender, ExitEventArgs e)
         {
-            if (server == null)
+            if (_server == null)
                 return;
-            server.CloseAsync().Wait();
-            server.Dispose();
-            server = null;
+            _server.CloseAsync().Wait();
+            _server.Dispose();
+            _server = null;
             txtServerStatus.Text = "stopped";
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Player1Play_Click(object sender, RoutedEventArgs e)
         {
-            Player1.Play();
+            _player.Play();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Player1Pause_Click(object sender, RoutedEventArgs e)
         {
-            Player1.Pause();
+            _player.Pause();
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Player1Stop_Click(object sender, RoutedEventArgs e)
         {
-            Player1.Stop();
+            _player.Stop();
+        }
+
+        private void Balance_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var s = sender as Slider;
+
+            if (Player1 != null)
+                Player1.Volume = 1 - ((s.Value - s.Minimum) / (s.Maximum - s.Minimum));
+            if (Player2 != null)
+                Player2.Volume = ((s.Value - s.Minimum) / (s.Maximum - s.Minimum));
         }
     }
 }

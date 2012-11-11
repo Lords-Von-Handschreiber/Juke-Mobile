@@ -24,8 +24,8 @@
             <TextBlock Text="Web Server is"/>
             <TextBlock Text="stopped" Name="txtServerStatus" />
             <Separator/>
-            <TextBlock Text="Tracks in the queue:"/>
             <TextBlock Text="{Binding ElementName=QueueList, Path=Items.Count, Mode=OneWay}"/>
+            <TextBlock Text="tracks in the queue"/>
         </StatusBar>
         <Grid>
             <Grid.RowDefinitions>
@@ -41,7 +41,11 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Player 1" TextAlignment="Center"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="Queue" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                <Button Content="Play" Click="Player1Play_Click"/>
+                <Button Content="Pause" Click="Player1Pause_Click" Margin="10,0,0,0"/>
+                <Button Content="Stop" Click="Player1Stop_Click" Margin="10,0,0,0"/>
+            </StackPanel>
             <TextBlock Grid.Row="0" Grid.Column="2" Text="Player 2" TextAlignment="Center"/>
 
             
@@ -49,30 +53,30 @@
                 <ListBoxItem Content="Sonnentanz - Klangkarussel"/>
             </ListBox>
 
-            <MediaElement Grid.Row="3" Grid.Column="0" Name="Player1" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
-            <Slider Grid.Row="3" Grid.Column="1" Minimum="-100" Value="-100" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="10" ToolTip="Balance"/>
-            <MediaElement Grid.Row="3" Grid.Column="2" Name="Player2"/>
-
+            <!-- Player 1 -->
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
                 <TextBlock Text="Klangkarusell - Sonnentanz" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
-                <TextBlock Text="- 0:53" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Content="Play" Click="Button_Click_1"/>
-                    <Button Content="Pause" Click="Button_Click_2"/>
-                    <Button Content="Stop" Click="Button_Click_3"/>
-                </StackPanel>
+                <ProgressBar Height="10" Name="Player1Progress"/>
+                <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player1Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10">
-                <Slider Minimum="0" Maximum="100" Value="100" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer1" IsSnapToTickEnabled="True" TickFrequency="1"/>
-                <TextBlock Text="{Binding ElementName=VolumePlayer1, Path=Value, Mode=OneWay}"/>
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="{Binding Path=Volume,ElementName=Player1}" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer1"/>
+            </StackPanel>
+            
+            <!-- Player 2 -->
+            <StackPanel Grid.Row="1" Grid.Column="2" Margin="10">
+                <TextBlock Text="Klangkarusell - Sonnentanz" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
+                <ProgressBar Height="10" Name="Player2Progress"/>
+                <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player2Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Margin="10">
-                <Slider Minimum="0" Maximum="100" Value="100" ToolTip="Volume" Orientation="Vertical"/>
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="{Binding Path=Volume,ElementName=Player2}" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer2"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="2" Margin="10">
-                <TextBlock Text="Artist - Track Title and much more text" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
-                <TextBlock Text="- 0:53" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended"/>
-            </StackPanel>
+
+            <MediaElement Grid.Row="3" Grid.Column="0" Name="Player1" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
+            <Slider Grid.Row="3" Grid.Column="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" Minimum="-1" Value="-1" Maximum="1" ToolTip="Balance" ValueChanged="Balance_ValueChanged"/>
+            <MediaElement Grid.Row="3" Grid.Column="2" Name="Player2" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
+
         </Grid>
     </DockPanel>
 </Window>
