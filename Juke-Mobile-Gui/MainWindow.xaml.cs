@@ -47,12 +47,7 @@ namespace Juke_Mobile_Gui
 
         private void End_Click(object sender, RoutedEventArgs e)
         {
-            CloseServer();
-        }
-
-        private void CloseServer()
-        {
-            CloseServer(null, null);
+            CloseServer(sender, null);
         }
 
         private void CloseServer(object sender, ExitEventArgs e)
@@ -63,6 +58,21 @@ namespace Juke_Mobile_Gui
             server.Dispose();
             server = null;
             txtServerStatus.Text = "stopped";
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Player1.Play();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Player1.Pause();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Player1.Stop();
         }
     }
 }
