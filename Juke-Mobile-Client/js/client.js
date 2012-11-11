@@ -46,6 +46,8 @@ $(document).ready(function () {
             }
             return false;
         });
+    } else if ($('#error-page').length > 0) {
+        //ignore not logged in
     } else if (!IsUserNameSet()) {
         window.location.href = 'index.html';
     } else if ($('#add-page').length > 0) {

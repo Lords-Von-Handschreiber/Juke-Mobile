@@ -57,6 +57,7 @@ namespace Juke_Mobile_Gui
             if (server == null)
                 return;
             server.CloseAsync().Wait();
+            server.Dispose();
             server = null;
             txtServerStatus.Text = "Off"; 
         }

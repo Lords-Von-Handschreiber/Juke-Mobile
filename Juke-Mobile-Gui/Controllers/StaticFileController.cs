@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Juke_Mobile_Gui.Properties;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,14 +16,16 @@ namespace Juke_Mobile_Gui.Controllers
     {
         public HttpResponseMessage Get(string res = "index.html")
         {
-            var file = new FileInfo("Juke-Mobile-Client/" + res);
+            var basePath = new FileInfo(Settings.Default.ServerClientPath);
+            var file = new FileInfo(basePath.FullName + "/" + res);
             if (!file.Exists)
-                file = new FileInfo("Juke-Mobile-Client/error.html");
+                file = new FileInfo(basePath.FullName + "/error.html");
 
             var content = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StreamContent(file.OpenRead())
             };
+            content.Content.Headers.Add("Content-Type", "text/html");
             return content;
         }
     }

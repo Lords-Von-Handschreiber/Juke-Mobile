@@ -8,5 +8,8 @@
     <Setting Name="ServerURLAndPort" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://localhost:1337</Value>
     </Setting>
+    <Setting Name="ServerClientPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Dev\ASP.Net\Juke-Mobile\Juke-Mobile-Client</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
