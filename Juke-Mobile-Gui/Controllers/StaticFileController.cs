@@ -25,8 +25,33 @@ namespace Juke_Mobile_Gui.Controllers
             {
                 Content = new StreamContent(file.OpenRead())
             };
-            content.Content.Headers.Add("Content-Type", "text/html");
+            content.Content.Headers.Add("Content-Type", GetMimeType(file.Extension));
             return content;
+        }
+
+
+        private string GetMimeType(string ext)
+        {
+            switch (ext)
+            {
+                case ".html":
+                case ".htm":
+                    return "text/html";
+                case ".js":
+                    return "application/javascript";
+                case ".css":
+                    return "text/css";
+                case ".less":
+                    return "text/css";
+                case ".png":
+                    return "image/png";
+                case ".jpg":
+                    return "image/jpeg";
+                case ".gif":
+                    return "image/gif";
+                default:
+                    return "unknown/unknown";
+            }
         }
     }
 }
