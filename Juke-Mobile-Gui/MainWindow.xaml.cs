@@ -26,11 +26,11 @@ namespace Juke_Mobile_Gui
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.Exit += CloseServer;
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            CloseServer();
             Application.Current.Shutdown(0);
         }
 
@@ -52,12 +52,17 @@ namespace Juke_Mobile_Gui
 
         private void CloseServer()
         {
+            CloseServer(null, null);
+        }
+
+        private void CloseServer(object sender, ExitEventArgs e)
+        {
             if (server == null)
                 return;
             server.CloseAsync().Wait();
             server.Dispose();
             server = null;
-            txtServerStatus.Text = "stopped"; 
+            txtServerStatus.Text = "stopped";
         }
     }
 }
