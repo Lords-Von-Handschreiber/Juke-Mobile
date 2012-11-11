@@ -43,7 +43,7 @@ namespace Juke_Mobile_Gui.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Dev\\ASP.Net\\Juke-Mobile\\Juke-Mobile-Client")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\..\\Juke-Mobile-Client")]
         public string ServerClientPath {
             get {
                 return ((string)(this["ServerClientPath"]));
