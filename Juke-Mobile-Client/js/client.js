@@ -1,4 +1,4 @@
-var lsUsernameKey = 'juke-mobile.juker';
+﻿var lsUsernameKey = 'juke-mobile.juker';
 
 function IsNullOrEmpty(thing) {
     if (!thing)
@@ -22,7 +22,7 @@ function GetUserName() {
 
 $(document).ready(function () {
     if (!Modernizr.localstorage) {
-        alert('Leider unterst�tzt den Browser den Localstorage nicht');
+        alert('Leider unterstützt den Browser den Localstorage nicht');
         return;
     }
 
