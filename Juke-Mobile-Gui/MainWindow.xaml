@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Juke-Mobile"
         ResizeMode="CanResizeWithGrip" 
-        MinWidth="500" MinHeight="400">
+        MinWidth="800" MinHeight="600">
     <DockPanel LastChildFill="True">
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -31,6 +31,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -44,13 +45,34 @@
             <TextBlock Grid.Row="0" Grid.Column="2" Text="Player 2" TextAlignment="Center"/>
 
             
-            <ListBox Grid.Row="1" Grid.Column="1" Name="QueueList">
+            <ListBox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="QueueList">
                 <ListBoxItem Content="Sonnentanz - Klangkarussel"/>
             </ListBox>
 
-            <MediaElement Grid.Row="2" Grid.Column="0" Name="Player1"/>
-            <Slider Grid.Row="2" Grid.Column="1" Minimum="-100" Value="-100" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="10" ToolTip="Balance"/>
-            <MediaElement Grid.Row="2" Grid.Column="2" Name="Player2"/>
+            <MediaElement Grid.Row="3" Grid.Column="0" Name="Player1" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
+            <Slider Grid.Row="3" Grid.Column="1" Minimum="-100" Value="-100" Maximum="100" IsSnapToTickEnabled="True" TickFrequency="10" ToolTip="Balance"/>
+            <MediaElement Grid.Row="3" Grid.Column="2" Name="Player2"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+                <TextBlock Text="Klangkarusell - Sonnentanz" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
+                <TextBlock Text="- 0:53" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Play" Click="Button_Click_1"/>
+                    <Button Content="Pause" Click="Button_Click_2"/>
+                    <Button Content="Stop" Click="Button_Click_3"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10">
+                <Slider Minimum="0" Maximum="100" Value="100" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer1" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                <TextBlock Text="{Binding ElementName=VolumePlayer1, Path=Value, Mode=OneWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Margin="10">
+                <Slider Minimum="0" Maximum="100" Value="100" ToolTip="Volume" Orientation="Vertical"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" Margin="10">
+                <TextBlock Text="Artist - Track Title and much more text" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
+                <TextBlock Text="- 0:53" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended"/>
+            </StackPanel>
         </Grid>
     </DockPanel>
 </Window>
