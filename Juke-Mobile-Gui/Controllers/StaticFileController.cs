@@ -14,6 +14,18 @@ namespace Juke_Mobile_Gui.Controllers
 {
     public class StaticFileController : ApiController
     {
+        private Dictionary<string, string> mimeTypes = new Dictionary<string, string>(){
+            { ".htm", "text/html"},
+            { ".html", "text/html"},
+            { ".js", "application/javascript"},
+            { ".css", "text/css"},
+            { ".less", "text/css"},
+            { ".png", "image/png"},
+            { ".jpg", "image/jpeg"},
+            { ".jpeg", "image/jpeg"},
+            { ".gif", "image/gif"}
+        };
+
         public HttpResponseMessage Get(string res = "index.html")
         {
             var basePath = new FileInfo(Settings.Default.ServerClientPath);
@@ -32,25 +44,13 @@ namespace Juke_Mobile_Gui.Controllers
 
         private string GetMimeType(string ext)
         {
-            switch (ext)
+            if (mimeTypes.ContainsKey(ext))
             {
-                case ".html":
-                case ".htm":
-                    return "text/html";
-                case ".js":
-                    return "application/javascript";
-                case ".css":
-                    return "text/css";
-                case ".less":
-                    return "text/css";
-                case ".png":
-                    return "image/png";
-                case ".jpg":
-                    return "image/jpeg";
-                case ".gif":
-                    return "image/gif";
-                default:
-                    return "unknown/unknown";
+                return mimeTypes[ext];
+            }
+            else
+            {
+                return "unknown/unknown";
             }
         }
     }
