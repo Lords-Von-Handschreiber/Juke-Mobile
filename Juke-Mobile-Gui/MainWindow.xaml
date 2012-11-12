@@ -13,11 +13,6 @@
                 <MenuItem Header="_Start" Click="Start_Click"/>
                 <MenuItem Header="Sto_p" Click="End_Click"/>
             </MenuItem>
-            <MenuItem Header="_Player">
-                <MenuItem Header="_Play" Command="Play"/>
-                <MenuItem Header="Pau_se" Command="Pause"/>
-                <MenuItem Header="_Stop" Command="Stop"/>
-            </MenuItem>
             <MenuItem Header="_Help" />
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
@@ -39,7 +34,7 @@
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Player 1" TextAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                 <Button Content="Play" Click="Player1Play_Click"/>
@@ -48,7 +43,7 @@
             </StackPanel>
             <TextBlock Grid.Row="0" Grid.Column="2" Text="Player 2" TextAlignment="Center"/>
 
-            
+
             <ListBox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="QueueList">
                 <ListBoxItem Content="Sonnentanz - Klangkarussel"/>
             </ListBox>
@@ -56,13 +51,13 @@
             <!-- Player 1 -->
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
                 <TextBlock Text="Klangkarusell - Sonnentanz" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
-                <ProgressBar Height="10" Name="Player1Progress"/>
+                <ProgressBar Height="10" Name="Player1Progress" MouseLeftButtonUp="Player1Progress_MouseLeftButtonUp"/>
                 <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player1Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10">
                 <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="0.5" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer1" ValueChanged="VolumePlayer1_ValueChanged"/>
             </StackPanel>
-            
+
             <!-- Player 2 -->
             <StackPanel Grid.Row="1" Grid.Column="2" Margin="10">
                 <TextBlock Text="Klangkarusell - Sonnentanz" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>

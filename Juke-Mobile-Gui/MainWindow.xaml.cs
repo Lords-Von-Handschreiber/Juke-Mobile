@@ -21,6 +21,8 @@ namespace Juke_Mobile_Gui
             InitializeComponent();
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
+
+            // faking 1st load from query
             _player.Load(new Uri(@"C:\Users\Thomas\Music\01 - Sonnentanz (Original Version).mp3"));
 
             Application.Current.Exit += CloseServer;
@@ -97,6 +99,11 @@ namespace Juke_Mobile_Gui
         {
             if (player != null)
                 player.Volume = value;
+        }
+
+        private void Player1Progress_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Player1.Position = new TimeSpan(0);
         }
     }
 }
