@@ -45,22 +45,23 @@ namespace Juke_Mobile_Core
             _timerPlayer1.Tick += new EventHandler(TriggerUIRefresh);
             _timerPlayer1.Start();
 
-            _player1.Volume = 1;
-            _player2.Volume = 0;
             Active = _player1;
             InActive = _player2;
         }
 
         public void Play()
         {
+            Active.Play();
         }
 
         public void Pause()
         {
+            Active.Pause();
         }
 
         public void Stop()
         {
+            Active.Stop();
         }
 
         public void TriggerUIRefresh(object sender, EventArgs e)
@@ -90,6 +91,11 @@ namespace Juke_Mobile_Core
             _progress2.Maximum = _positionPlayer2.TotalSeconds;
 
             _remaining2.Text = _player2.NaturalDuration.TimeSpan.ToString(_remainingTimeSpanFormat);
+        }
+
+        public void Load(Uri track)
+        {
+            Active.Source = track;
         }
     }
 }

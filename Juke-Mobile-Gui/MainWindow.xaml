@@ -60,7 +60,7 @@
                 <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player1Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10">
-                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="{Binding Path=Volume,ElementName=Player1}" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer1"/>
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="0.5" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer1" ValueChanged="VolumePlayer1_ValueChanged"/>
             </StackPanel>
             
             <!-- Player 2 -->
@@ -70,11 +70,11 @@
                 <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player2Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Margin="10">
-                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="{Binding Path=Volume,ElementName=Player2}" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer2"/>
+                <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="1" Value="0.5" ToolTip="Volume" Orientation="Vertical" Name="VolumePlayer2" ValueChanged="VolumePlayer2_ValueChanged"/>
             </StackPanel>
 
             <MediaElement Grid.Row="3" Grid.Column="0" Name="Player1" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
-            <Slider Grid.Row="3" Grid.Column="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" Minimum="-1" Value="-1" Maximum="1" ToolTip="Balance" ValueChanged="Balance_ValueChanged"/>
+            <Slider Grid.Row="3" Grid.Column="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" Minimum="-1" Value="-1" Maximum="1" ToolTip="Balance" ValueChanged="Balance_ValueChanged" Name="Balance"/>
             <MediaElement Grid.Row="3" Grid.Column="2" Name="Player2" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
 
         </Grid>

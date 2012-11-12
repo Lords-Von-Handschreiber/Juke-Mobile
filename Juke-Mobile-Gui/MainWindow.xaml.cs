@@ -21,6 +21,7 @@ namespace Juke_Mobile_Gui
             InitializeComponent();
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
+            _player.Load(new Uri(@"C:\Users\Thomas\Music\01 - Sonnentanz (Original Version).mp3"));
 
             Application.Current.Exit += CloseServer;
         }
@@ -73,12 +74,29 @@ namespace Juke_Mobile_Gui
 
         private void Balance_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var s = sender as Slider;
+            if (Balance != null && Player1 != null && Player2 != null)
+            {
+                SetCalculatedVolume(Player1, VolumePlayer1.Value * (1 - ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum))));
+                SetCalculatedVolume(Player2, VolumePlayer2.Value * ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum)));
+            }
+        }
 
-            if (Player1 != null)
-                Player1.Volume = 1 - ((s.Value - s.Minimum) / (s.Maximum - s.Minimum));
-            if (Player2 != null)
-                Player2.Volume = ((s.Value - s.Minimum) / (s.Maximum - s.Minimum));
+        private void VolumePlayer1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Balance != null)
+                SetCalculatedVolume(Player1, e.NewValue * (1 - ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum))));
+        }
+
+        private void VolumePlayer2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Balance != null)
+                SetCalculatedVolume(Player2, e.NewValue * ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum)));
+        }
+
+        private void SetCalculatedVolume(MediaElement player, double value)
+        {
+            if (player != null)
+                player.Volume = value;
         }
     }
 }
