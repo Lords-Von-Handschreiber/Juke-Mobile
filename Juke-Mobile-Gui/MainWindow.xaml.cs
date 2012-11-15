@@ -43,7 +43,6 @@ namespace Juke_Mobile_Gui
                 return;
 
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
-
             cfg.Filters.Add(new RavenDbApiAttribute(DbDocumentStore.Instance));
 
             _server = new HttpSelfHostServer(cfg);
