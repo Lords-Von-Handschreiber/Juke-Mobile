@@ -1,5 +1,8 @@
 ﻿using Juke_Mobile_Core;
+using Juke_Mobile_Gui.Helper;
+using Raven.Client.Embedded;
 using System;
+using System.IO;
 using System.Web.Http.SelfHost;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,6 +39,9 @@ namespace Juke_Mobile_Gui
                 return;
 
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
+
+            cfg.Filters.Add(new RavenDbApiAttribute(Juke_Mobile_Model.Db.Instance));
+
             _server = new HttpSelfHostServer(cfg);
             _server.OpenAsync().Wait();
             txtServerStatus.Text = "running";
