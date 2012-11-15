@@ -33,10 +33,14 @@ namespace Juke_Mobile_Core
         {
             _player1 = player1;
             _player1.MediaOpened += _player1_MediaOpened;
+            _player1.LoadedBehavior = MediaState.Manual;
+            _player1.UnloadedBehavior = MediaState.Stop;
             _progress1 = progress1;
             _remaining1 = remaining1;
             _player2 = p2;
             _player2.MediaOpened += _player2_MediaOpened;
+            _player2.LoadedBehavior = MediaState.Manual;
+            _player2.UnloadedBehavior = MediaState.Stop;
             _progress2 = progress2;
             _remaining2 = remaining2;
 
@@ -51,6 +55,9 @@ namespace Juke_Mobile_Core
 
         public void Play()
         {
+            // faking 1st load from query
+            Load(new Uri(@"C:\Users\Thomas\Music\01 - Sonnentanz (Original Version).mp3"));
+
             Active.Play();
         }
 
@@ -81,7 +88,7 @@ namespace Juke_Mobile_Core
             _progress1.Minimum = 0;
             _progress1.Maximum = _positionPlayer1.TotalSeconds;
 
-            _remaining1.Text = _player1.NaturalDuration.TimeSpan.ToString(_remainingTimeSpanFormat);
+            _remaining1.Text = _positionPlayer1.ToString(_remainingTimeSpanFormat);
         }
 
         private void _player2_MediaOpened(object sender, RoutedEventArgs e)
