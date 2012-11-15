@@ -99,7 +99,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Db.cs" />
+    <Compile Include="Database\Db.cs" />
+    <Compile Include="Database\DbDocumentStore.cs" />
     <Compile Include="MusicAnalysis.cs" />
     <Compile Include="MusicInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

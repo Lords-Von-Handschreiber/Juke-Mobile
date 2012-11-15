@@ -1,5 +1,7 @@
 ﻿using Juke_Mobile_Core;
 using Juke_Mobile_Gui.Helper;
+using Juke_Mobile_Model;
+using Juke_Mobile_Model.Database;
 using Raven.Client.Embedded;
 using System;
 using System.IO;
@@ -25,6 +27,8 @@ namespace Juke_Mobile_Gui
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
 
+            //QueueList.DataContext = Db.Instance.Query<dynamic>()
+
             Application.Current.Exit += CloseServer;
         }
 
@@ -40,7 +44,7 @@ namespace Juke_Mobile_Gui
 
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
 
-            cfg.Filters.Add(new RavenDbApiAttribute(Juke_Mobile_Model.Db.Instance));
+            cfg.Filters.Add(new RavenDbApiAttribute(DbDocumentStore.Instance));
 
             _server = new HttpSelfHostServer(cfg);
             _server.OpenAsync().Wait();
