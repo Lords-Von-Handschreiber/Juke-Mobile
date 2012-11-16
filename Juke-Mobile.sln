@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A9BD20
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juke-Mobile-Gui", "Juke-Mobile-Gui\Juke-Mobile-Gui.csproj", "{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juke-Mobile-UnitTest", "Juke-Mobile-UnitTest\Juke-Mobile-UnitTest.csproj", "{AC41FE63-AF36-4331-AC5B-F84B67DF4B38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{323E8EDB-3A1D-48F1-A7E1-A17A981E7574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC41FE63-AF36-4331-AC5B-F84B67DF4B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC41FE63-AF36-4331-AC5B-F84B67DF4B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC41FE63-AF36-4331-AC5B-F84B67DF4B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC41FE63-AF36-4331-AC5B-F84B67DF4B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
