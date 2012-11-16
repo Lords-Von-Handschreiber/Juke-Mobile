@@ -7,15 +7,52 @@ namespace Juke_Mobile_UnitTest
     [TestClass]
     public class MusicAnalysisTest
     {
-        public const string scheisse = "Scheisse";
+        /*
+         *  Für den Test befindet sich das Lied ABBA Thank you 4 the Musik im Testordner
+         */
+        public const string filepfad = "18 Thank You For The Music.mp3";
+        public const string album = "ABBA Gold (Greatest Hits)";
+        public const string title = "Thank You For The Music";
+        public const string artist = "ABBA"; 
+
         [TestMethod]
-        public void TestT()
+        public void FileNotFound()
         {
-            MP3Analysis mp3a = new MP3Analysis();
-            int that=mp3a.makethat(1);           
-            if (mp3a.makethat(1) != 1)
+            // act
+            try
             {
-                throw new ArgumentOutOfRangeException("test that", that, scheisse);
+                new MP3Analysis().GetInfo(new System.IO.FileInfo("Falscher FileName"));
+            }
+            catch (System.IO.FileNotFoundException e)
+            {
+                StringAssert.Contains(e.Message, "Falscher FileName");
+            }
+        }
+
+        public void rightAlbum()
+        {
+            MusicInfo musicInfo = new MP3Analysis().GetInfo(new System.IO.FileInfo(filepfad));
+            if (!musicInfo.Album.Equals(album))
+            {
+                throw new ArgumentOutOfRangeException("Das Album wird nicht richtig ausgelsen");
+            }
+        }
+
+        public void rightTitle()
+        {
+            MusicInfo musicInfo = new MP3Analysis().GetInfo(new System.IO.FileInfo(filepfad));
+            if (!musicInfo.Title.Equals(title))
+            {
+                throw new ArgumentOutOfRangeException("Der Titel wird nicht richtig ausgelsen");
+            }
+        }
+
+        public void rightArtist()
+        {
+            MusicInfo musicInfo = new MP3Analysis().GetInfo(new System.IO.FileInfo(filepfad));
+            if (!musicInfo.Artist.Equals(artist))
+            {
+                throw new ArgumentOutOfRangeException("Der Kuenstler wird nicht richtig ausgelsen");
             }
         }
     }

@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TagLib;
 
 namespace Juke_Mobile_Model
 {
-    public class MP3Analysis
+    public class MP3Analysis : MusicAnalysis 
     {
-        public int makethat(int t)
+
+
+        public MusicInfo GetInfo(System.IO.FileInfo mp3File)
         {
-            return t+1;
+            MusicInfo musicInfo = null;
+
+
+
+            return musicInfo;
         }
     }
 }
