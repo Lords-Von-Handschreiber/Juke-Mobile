@@ -7,13 +7,38 @@ using TagLib;
 
 namespace Juke_Mobile_Model
 {
-    public class MP3Analysis : MusicAnalysis 
+    /// <summary>
+    /// Helper class to get MP3 Information from ID3 Tags
+    /// Implemented as singleton.
+    /// </summary>
+    public sealed class MP3Analysis
     {
+        private static volatile MP3Analysis instance;
+        private static object syncRoot = new Object();
 
+        private MP3Analysis() { }
+
+        public static MP3Analysis Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                        {
+                            instance = new MP3Analysis();
+                        }
+                    }
+                }
+
+                return instance;
+            }
+        }
 
         public MusicInfo GetInfo(System.IO.FileInfo mp3File)
-        {
-           
+        {           
             MusicInfo musicInfo = new MusicInfo();
             
             try
@@ -22,17 +47,13 @@ namespace Juke_Mobile_Model
                 musicInfo.Album = mp3.Tag.Album;
                 musicInfo.Artist = mp3.Tag.AlbumArtists[0];
                 musicInfo.Title = mp3.Tag.Title;
+                musicInfo.PhysicalPath = mp3File.FullName;
             }
             catch (UnsupportedFormatException e)
             {
                 throw new System.IO.FileNotFoundException(e.Message);
             }
-
-            
-
-
-
-
+         
             return musicInfo;
         }
     }

@@ -67,6 +67,9 @@
     <Reference Include="NetTopologySuite">
       <HintPath>..\packages\RavenDB.Database.1.2.2142-Unstable\lib\net40\NetTopologySuite.dll</HintPath>
     </Reference>
+    <Reference Include="policy.2.0.taglib-sharp">
+      <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="PowerCollections">
       <HintPath>..\packages\RavenDB.Database.1.2.2142-Unstable\lib\net40\PowerCollections.dll</HintPath>
     </Reference>
@@ -98,7 +101,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="taglib-sharp">
-      <HintPath>..\packages\taglib-sharp-2.1.0.0-windows\Libraries\taglib-sharp.dll</HintPath>
+      <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

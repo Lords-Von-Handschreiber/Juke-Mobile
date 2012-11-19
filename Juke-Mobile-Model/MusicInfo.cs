@@ -11,6 +11,7 @@ namespace Juke_Mobile_Model
         public String Artist{ get; set;}
         public String Album { get; set; }
         public String Title { get; set; }
+        public String PhysicalPath { get; set; }
 
         public override string ToString()
         {

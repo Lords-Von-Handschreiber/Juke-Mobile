@@ -11,6 +11,8 @@ using System.Net.Http.Formatting;
 using System.IO;
 using System.Collections.ObjectModel;
 using Juke_Mobile_Gui.Properties;
+using Juke_Mobile_Model;
+using Juke_Mobile_Model.Database;
 
 namespace Juke_Mobile_Gui.Controllers
 {
@@ -28,8 +30,11 @@ namespace Juke_Mobile_Gui.Controllers
             foreach (MultipartFileData data in streamProvider.FileData)
             {
                 string strFileName = data.Headers.ContentDisposition.FileName.Trim('"');
-                File.Move(data.LocalFileName, Settings.Default.ServerUploadPath + "\\" + strFileName);
-                //TODO update database with ID3 Info
+                string strNewFileFullName =  Settings.Default.ServerUploadPath + "\\" + strFileName;
+                File.Move(data.LocalFileName, strNewFileFullName);
+                FileInfo fi = new FileInfo(strNewFileFullName);
+                MusicInfo info = MP3Analysis.Instance.GetInfo(fi);
+                //Db.Instance.Store(info);                
             }                        
         }
     }
