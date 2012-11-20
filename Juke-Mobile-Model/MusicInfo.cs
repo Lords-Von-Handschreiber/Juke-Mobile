@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Juke_Mobile_Model
 {
+    /// <summary>
+    /// Data Contract for Information read from the ID3 Tags.
+    /// </summary>
     public class MusicInfo
     {
         public String Artist{ get; set;}

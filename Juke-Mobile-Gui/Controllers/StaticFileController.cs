@@ -12,8 +12,15 @@ using System.Web.Mvc;
 
 namespace Juke_Mobile_Gui.Controllers
 {
+    /// <summary>
+    /// Default File Controller
+    /// Handles all site ressources.
+    /// </summary>
     public class StaticFileController : ApiController
     {
+        /// <summary>
+        /// MimeTypes definition.
+        /// </summary>
         private Dictionary<string, string> mimeTypes = new Dictionary<string, string>(){
             { ".htm", "text/html"},
             { ".html", "text/html"},

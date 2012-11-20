@@ -16,6 +16,12 @@ using Juke_Mobile_Model.Database;
 
 namespace Juke_Mobile_Gui.Controllers
 {
+    /// <summary>
+    /// Controller that handles fileuploads.
+    /// Multiple files possible
+    /// Because files get uploaded with GUID as name we have to rename them.
+    /// After renaming the file information is to be stored in the database.
+    /// </summary>
     public class FileUploadController : ApiController
     {        
         [HttpPost]

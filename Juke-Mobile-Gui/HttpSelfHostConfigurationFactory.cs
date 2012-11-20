@@ -13,6 +13,9 @@ using Juke_Mobile_Gui.Properties;
 
 namespace Juke_Mobile_Gui
 {
+    /// <summary>
+    /// Returns a SelfHostConfiguration according to AppConfig.
+    /// </summary>
     public static class HttpSelfHostConfigurationFactory
     {
         public static HttpSelfHostConfiguration CreateInstance()
