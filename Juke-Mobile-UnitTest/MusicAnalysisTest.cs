@@ -33,30 +33,21 @@ namespace Juke_Mobile_UnitTest
         public void rightAlbum()
         {
             MusicInfo musicInfo = MP3Analysis.Instance.GetInfo(new System.IO.FileInfo(filepfad));
-            if (!musicInfo.Album.Equals(album))
-            {
-                throw new ArgumentOutOfRangeException(musicInfo.Album,"Das Album wird nicht richtig ausgelsen");
-            }
+            StringAssert.Equals(musicInfo.Album, album);
         }
 
         [TestMethod]
         public void rightTitle()
         {
             MusicInfo musicInfo = MP3Analysis.Instance.GetInfo(new System.IO.FileInfo(filepfad));
-            if (!musicInfo.Title.Equals(title))
-            {
-                throw new ArgumentOutOfRangeException(musicInfo.Title,"Der Titel wird nicht richtig ausgelsen");
-            }
+            StringAssert.Equals(musicInfo.Title, title);
         }
 
         [TestMethod]
         public void rightArtist()
         {
             MusicInfo musicInfo = MP3Analysis.Instance.GetInfo(new System.IO.FileInfo(filepfad));
-            if (!musicInfo.Artist.Equals(artist))
-            {
-                throw new ArgumentOutOfRangeException(musicInfo.Artist,"Der Kuenstler wird nicht richtig ausgelsen");
-            }
+            StringAssert.Equals(musicInfo.Artist, artist);
         }
     }
 }
