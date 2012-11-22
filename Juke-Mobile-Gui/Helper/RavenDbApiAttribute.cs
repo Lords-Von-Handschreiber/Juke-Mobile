@@ -14,12 +14,21 @@ namespace Juke_Mobile_Gui.Helper
     {
         readonly IDocumentStore documentStore;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RavenDbApiAttribute" /> class.
+        /// </summary>
+        /// <param name="documentStore">The document store.</param>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public RavenDbApiAttribute(IDocumentStore documentStore)
         {
             if (documentStore == null) throw new ArgumentNullException("documentStore");
             this.documentStore = documentStore;
         }
 
+        /// <summary>
+        /// Occurs before the action method is invoked.
+        /// </summary>
+        /// <param name="actionContext">The action context.</param>
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             var controller = actionContext.ControllerContext.Controller as RavenController;
@@ -29,6 +38,10 @@ namespace Juke_Mobile_Gui.Helper
             controller.Db = documentStore.OpenSession();
         }
 
+        /// <summary>
+        /// Occurs after the action method is invoked.
+        /// </summary>
+        /// <param name="actionExecutedContext">The action executed context.</param>
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
             var controller = actionExecutedContext.ActionContext.ControllerContext.Controller as RavenController;

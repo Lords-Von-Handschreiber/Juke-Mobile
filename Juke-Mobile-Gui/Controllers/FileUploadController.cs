@@ -23,7 +23,12 @@ namespace Juke_Mobile_Gui.Controllers
     /// After renaming the file information is to be stored in the database.
     /// </summary>
     public class FileUploadController : ApiController
-    {        
+    {
+        /// <summary>
+        /// Uploads the file.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.Web.Http.HttpResponseException"></exception>
         [HttpPost]
         public async Task UploadFile()
         {
