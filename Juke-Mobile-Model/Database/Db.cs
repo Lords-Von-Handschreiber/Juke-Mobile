@@ -14,8 +14,17 @@ namespace Juke_Mobile_Model.Database
         private static volatile IDocumentSession instance;
         private static object syncRoot = new Object();
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="Db" /> class from being created.
+        /// </summary>
         private Db() { }
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static IDocumentSession Instance
         {
             get

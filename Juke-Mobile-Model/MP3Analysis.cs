@@ -16,8 +16,17 @@ namespace Juke_Mobile_Model
         private static volatile MP3Analysis instance;
         private static object syncRoot = new Object();
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="MP3Analysis" /> class from being created.
+        /// </summary>
         private MP3Analysis() { }
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static MP3Analysis Instance
         {
             get
@@ -37,6 +46,12 @@ namespace Juke_Mobile_Model
             }
         }
 
+        /// <summary>
+        /// Gets the info.
+        /// </summary>
+        /// <param name="mp3File">The MP3 file.</param>
+        /// <returns></returns>
+        /// <exception cref="System.IO.FileNotFoundException"></exception>
         public MusicInfo GetInfo(System.IO.FileInfo mp3File)
         {           
             MusicInfo musicInfo = new MusicInfo();

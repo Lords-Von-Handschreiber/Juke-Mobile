@@ -7,7 +7,7 @@
     <DockPanel LastChildFill="True">
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_Exit" Click="MenuItem_Click_1"/>
+                <MenuItem Header="_Exit" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="_Web Server">
                 <MenuItem Header="_Start" Click="Start_Click"/>

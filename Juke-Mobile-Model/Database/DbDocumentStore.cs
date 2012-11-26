@@ -14,8 +14,17 @@ namespace Juke_Mobile_Model.Database
         private static volatile IDocumentStore instance;
         private static object syncRoot = new Object();
 
+        /// <summary>
+        /// Prevents a default instance of the <see cref="DbDocumentStore" /> class from being created.
+        /// </summary>
         private DbDocumentStore() { }
 
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        /// <value>
+        /// The instance.
+        /// </value>
         public static IDocumentStore Instance
         {
             get
