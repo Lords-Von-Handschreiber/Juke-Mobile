@@ -11,6 +11,7 @@ namespace Juke_Mobile_Model
     /// </summary>
     public class MusicInfo
     {
+        public string Id { get; set; }
         public String Artist{ get; set;}
         public String Album { get; set; }
         public String Title { get; set; }

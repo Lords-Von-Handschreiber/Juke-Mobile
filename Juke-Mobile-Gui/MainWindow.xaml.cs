@@ -59,7 +59,7 @@ namespace Juke_Mobile_Gui
             cfg.Filters.Add(new RavenDbApiAttribute(DbDocumentStore.Instance));
 
             _server = new HttpSelfHostServer(cfg);
-            _server.OpenAsync().Wait();
+            _server.OpenAsync().Wait();            
             txtServerStatus.Text = "running";
         }
 

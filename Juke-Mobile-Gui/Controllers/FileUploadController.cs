@@ -45,7 +45,7 @@ namespace Juke_Mobile_Gui.Controllers
                 File.Move(data.LocalFileName, strNewFileFullName);
                 FileInfo fi = new FileInfo(strNewFileFullName);
                 MusicInfo info = MP3Analysis.Instance.GetInfo(fi);
-                //Db.Instance.Store(info);                
+                Db.Instance.Store(info);                 
             }                        
         }
     }
