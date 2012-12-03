@@ -109,6 +109,8 @@
     <Compile Include="Database\DbDocumentStore.cs" />
     <Compile Include="MP3Analysis.cs" />
     <Compile Include="MusicInfo.cs" />
+    <Compile Include="PlayRequest.cs" />
+    <Compile Include="PlayRequestManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
