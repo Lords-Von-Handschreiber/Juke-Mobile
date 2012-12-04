@@ -9,16 +9,19 @@ using System.Web.Http.SelfHost;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Linq;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Juke_Mobile_Gui
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IDbReceiver 
     {
         HttpSelfHostServer _server;
-
+        List<MusicInfo> uploadedTracks = new List<MusicInfo>();
         DoublePlayer _player;
 
         /// <summary>
@@ -27,6 +30,7 @@ namespace Juke_Mobile_Gui
         public MainWindow()
         {
             InitializeComponent();
+            Db.Attach(this);
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
 
@@ -58,8 +62,8 @@ namespace Juke_Mobile_Gui
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
             cfg.Filters.Add(new RavenDbApiAttribute(DbDocumentStore.Instance));
 
-            _server = new HttpSelfHostServer(cfg);
-            _server.OpenAsync().Wait();            
+            _server = new HttpSelfHostServer(cfg);            
+            _server.OpenAsync().Wait();               
             txtServerStatus.Text = "running";
         }
 
@@ -71,6 +75,7 @@ namespace Juke_Mobile_Gui
         private void End_Click(object sender, RoutedEventArgs e)
         {
             CloseServer(sender, null);
+            Db.Detach(this);
         }
 
         /// <summary>
@@ -173,6 +178,15 @@ namespace Juke_Mobile_Gui
         private void Player1Progress_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Player1.Position = new TimeSpan(0);
+        }
+
+        /// <summary>
+        /// Implemented Observer Method
+        /// </summary>
+        /// <param name="db"></param>
+        public void Update()
+        {
+             uploadedTracks = Db.Instance.Query<MusicInfo>().ToList();
         }
     }
 }

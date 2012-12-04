@@ -41,11 +41,11 @@ namespace Juke_Mobile_Gui.Controllers
             foreach (MultipartFileData data in streamProvider.FileData)
             {
                 string strFileName = data.Headers.ContentDisposition.FileName.Trim('"');
-                string strNewFileFullName = Settings.Default.ServerUploadPath + "\\" + data.LocalFileName +"_"+ strFileName;
+                string strNewFileFullName = Settings.Default.ServerUploadPath + "\\" + Guid.NewGuid() +"_"+ strFileName;
                 File.Move(data.LocalFileName, strNewFileFullName);
                 FileInfo fi = new FileInfo(strNewFileFullName);
                 MusicInfo info = MP3Analysis.Instance.GetInfo(fi);
-                Db.Instance.Store(info);                 
+                Db.addItemWithUpdate(info);               
             }                        
         }
     }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Raven.Client;
 using Raven.Client.Embedded;
-using System.Linq;
 using Juke_Mobile_Model.Database;
 
 namespace Juke_Mobile_Model
