@@ -33,6 +33,11 @@ namespace Juke_Mobile_Gui.Controllers
             { ".gif", "image/gif"}
         };
 
+        /// <summary>
+        /// Gets the specified res.
+        /// </summary>
+        /// <param name="res">The res.</param>
+        /// <returns></returns>
         public HttpResponseMessage Get(string res = "index.html")
         {
             var basePath = new FileInfo(Settings.Default.ServerClientPath);
@@ -49,6 +54,11 @@ namespace Juke_Mobile_Gui.Controllers
         }
 
 
+        /// <summary>
+        /// Gets the MIME-Type.
+        /// </summary>
+        /// <param name="ext">The ext.</param>
+        /// <returns></returns>
         private string GetMimeType(string ext)
         {
             if (mimeTypes.ContainsKey(ext))

@@ -26,7 +26,19 @@ namespace Juke_Mobile_Core
 
         DispatcherTimer _timerPlayer1 = new DispatcherTimer();
 
+        /// <summary>
+        /// Gets the active.
+        /// </summary>
+        /// <value>
+        /// The active.
+        /// </value>
         public MediaElement Active { get; private set; }
+        /// <summary>
+        /// Gets the inactive.
+        /// </summary>
+        /// <value>
+        /// The inactive.
+        /// </value>
         public MediaElement InActive { get; private set; }
 
         /// <summary>

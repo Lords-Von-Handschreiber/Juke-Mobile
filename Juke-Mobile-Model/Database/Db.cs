@@ -18,13 +18,19 @@ namespace Juke_Mobile_Model.Database
         private static object syncRoot = new Object();
         private static List<IDbReceiver> _receivers = new List<IDbReceiver>();
 
+        /// <summary>
+        /// Attaches the specified receiver.
+        /// </summary>
+        /// <param name="receiver">The receiver.</param>
         public static void Attach(IDbReceiver receiver)
         {
             _receivers.Add(receiver);
         }
 
-
-
+        /// <summary>
+        /// Detaches the specified receiver.
+        /// </summary>
+        /// <param name="receiver">The receiver.</param>
         public static void Detach(IDbReceiver receiver)
         {
             _receivers.Remove(receiver);
@@ -64,10 +70,12 @@ namespace Juke_Mobile_Model.Database
         /// Adding items and updating observer state
         /// </summary>
         /// <param name="item"></param>
-        public static void addItemWithUpdate(dynamic item){
+        public static void AddItemWithUpdate(dynamic item)
+        {
             Db.Instance.Store(item);
             Db.instance.SaveChanges();
-            foreach(IDbReceiver receiver in _receivers){
+            foreach (IDbReceiver receiver in _receivers)
+            {
                 receiver.Update();
             }
         }

@@ -53,9 +53,9 @@ namespace Juke_Mobile_Model
         /// <returns></returns>
         /// <exception cref="System.IO.FileNotFoundException"></exception>
         public MusicInfo GetInfo(System.IO.FileInfo mp3File)
-        {           
+        {
             MusicInfo musicInfo = new MusicInfo();
-            
+
             try
             {
                 File mp3 = File.Create(mp3File.FullName);
@@ -68,7 +68,7 @@ namespace Juke_Mobile_Model
             {
                 throw new System.IO.FileNotFoundException(e.Message);
             }
-         
+
             return musicInfo;
         }
     }
