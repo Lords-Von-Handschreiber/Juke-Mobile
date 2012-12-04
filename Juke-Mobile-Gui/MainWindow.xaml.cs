@@ -19,7 +19,7 @@ namespace Juke_Mobile_Gui
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IDbReceiver 
+    public partial class MainWindow : Window, IDbReceiver
     {
         HttpSelfHostServer _server;
         /// <summary>
@@ -34,7 +34,7 @@ namespace Juke_Mobile_Gui
         public MainWindow()
         {
             InitializeComponent();
-            QueueList.DataContext = uploadedTracks; 
+            QueueList.DataContext = uploadedTracks;
             Db.Attach(this);
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
@@ -67,8 +67,8 @@ namespace Juke_Mobile_Gui
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
             cfg.Filters.Add(new RavenDbApiAttribute(DbDocumentStore.Instance));
 
-            _server = new HttpSelfHostServer(cfg);            
-            _server.OpenAsync().Wait();               
+            _server = new HttpSelfHostServer(cfg);
+            _server.OpenAsync().Wait();
             txtServerStatus.Text = "running";
         }
 
@@ -137,8 +137,8 @@ namespace Juke_Mobile_Gui
         {
             if (Balance != null && Player1 != null && Player2 != null)
             {
-                SetCalculatedVolume(Player1, VolumePlayer1.Value * (1 - ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum))));
-                SetCalculatedVolume(Player2, VolumePlayer2.Value * ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum)));
+                SetCalculatedVolume(Player1, VolumePlayer1.Value * Math.Pow((1 - ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum))), 2));
+                SetCalculatedVolume(Player2, VolumePlayer2.Value * Math.Pow(((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum)), 2));
             }
         }
 
@@ -150,7 +150,7 @@ namespace Juke_Mobile_Gui
         private void VolumePlayer1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (Balance != null)
-                SetCalculatedVolume(Player1, e.NewValue * (1 - ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum))));
+                SetCalculatedVolume(Player1, e.NewValue * Math.Pow((1 - ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum))), 2));
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Juke_Mobile_Gui
         private void VolumePlayer2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (Balance != null)
-                SetCalculatedVolume(Player2, e.NewValue * ((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum)));
+                SetCalculatedVolume(Player2, e.NewValue * Math.Pow(((Balance.Value - Balance.Minimum) / (Balance.Maximum - Balance.Minimum)), 2));
         }
 
         /// <summary>
