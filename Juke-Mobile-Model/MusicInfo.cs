@@ -21,5 +21,28 @@ namespace Juke_Mobile_Model
         {
             return Artist + ", " + Title + ", " + Album;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+                return true;
+            if (!(obj is MusicInfo))
+                return false;
+            MusicInfo mp3obj = (MusicInfo)obj;
+            if (!string.IsNullOrEmpty(this.Id) && !string.IsNullOrEmpty(mp3obj.Id) && mp3obj.Id.Equals(this.Id))
+            {
+                return true;
+            }
+            if (mp3obj.Artist.Equals(this.Artist) && mp3obj.Album.Equals(this.Album) && mp3obj.Title.Equals(this.Title))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Album.GetHashCode() + this.Artist.GetHashCode() + this.Id.GetHashCode() + this.Title.GetHashCode();
+        }
     }
 }
