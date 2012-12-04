@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using System.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Juke_Mobile_Gui
 {
@@ -21,7 +22,10 @@ namespace Juke_Mobile_Gui
     public partial class MainWindow : Window, IDbReceiver 
     {
         HttpSelfHostServer _server;
-        List<MusicInfo> uploadedTracks = new List<MusicInfo>();
+        /// <summary>
+        /// public static for threadsafety. List that updates UI
+        /// </summary>
+        public static ObservableCollection<MusicInfo> uploadedTracks = new ObservableCollection<MusicInfo>();
         DoublePlayer _player;
 
         /// <summary>
@@ -30,6 +34,7 @@ namespace Juke_Mobile_Gui
         public MainWindow()
         {
             InitializeComponent();
+            QueueList.DataContext = uploadedTracks; 
             Db.Attach(this);
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
@@ -181,12 +186,20 @@ namespace Juke_Mobile_Gui
         }
 
         /// <summary>
-        /// Implemented Observer Method
+        /// Implemented Observer Method uploadedTracks has to be set by the current applicationdispatcher.
+        /// Because it cannot be set from another thread than the UI-Thread
         /// </summary>
         /// <param name="db"></param>
-        public void Update()
+        public void Update(string id)
         {
-             uploadedTracks = Db.Instance.Query<MusicInfo>().ToList();
+            MusicInfo info = Db.Instance.Load<MusicInfo>(id);
+            System.Windows.Application.Current.Dispatcher.Invoke(
+    System.Windows.Threading.DispatcherPriority.Normal,
+    (Action)delegate()
+    {
+        uploadedTracks.Add(info);
+    });
+
         }
     }
 }

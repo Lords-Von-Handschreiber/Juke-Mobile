@@ -12,6 +12,6 @@ namespace Juke_Mobile_Model.Database
     /// </summary>
     public interface IDbReceiver
     {
-        void Update();
+        void Update(string id);
     }
 }

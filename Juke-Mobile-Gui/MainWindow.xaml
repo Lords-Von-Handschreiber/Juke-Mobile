@@ -44,8 +44,14 @@
             <TextBlock Grid.Row="0" Grid.Column="2" Text="Player 2" TextAlignment="Center"/>
 
 
-            <ListBox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="QueueList">
-                <ListBoxItem Content="Sonnentanz - Klangkarussel"/>
+            <ListBox Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Name="QueueList" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Path=Title}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
 
             <!-- Player 1 -->

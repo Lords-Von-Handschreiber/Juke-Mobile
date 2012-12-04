@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Juke_Mobile_Model.Database
 {
@@ -67,8 +68,13 @@ namespace Juke_Mobile_Model.Database
         public static void addItemWithUpdate(dynamic item){
             Db.Instance.Store(item);
             Db.instance.SaveChanges();
-            foreach(IDbReceiver receiver in _receivers){
-                receiver.Update();
+            if (item is MusicInfo)
+            {
+                MusicInfo info = item as MusicInfo;
+                foreach (IDbReceiver receiver in _receivers)
+                {
+                    receiver.Update(info.Id);
+                }
             }
         }
     }
