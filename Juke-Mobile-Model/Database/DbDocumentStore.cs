@@ -44,6 +44,5 @@ namespace Juke_Mobile_Model.Database
                 return instance;
             }
         }
-
     }
 }

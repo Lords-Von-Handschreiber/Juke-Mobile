@@ -13,8 +13,11 @@ namespace Juke_Mobile_UnitTest
         public const string filepfad = "18 Thank You For The Music.mp3";
         public const string album = "ABBA Gold (Greatest Hits)";
         public const string title = "Thank You For The Music";
-        public const string artist = "ABBA"; 
+        public const string artist = "ABBA";
 
+        /// <summary>
+        /// Files the not found.
+        /// </summary>
         [TestMethod]
         public void FileNotFound()
         {
@@ -29,22 +32,31 @@ namespace Juke_Mobile_UnitTest
             }
         }
 
+        /// <summary>
+        /// Rights the album.
+        /// </summary>
         [TestMethod]
-        public void rightAlbum()
+        public void RightAlbum()
         {
             MusicInfo musicInfo = MP3Analysis.Instance.GetInfo(new System.IO.FileInfo(filepfad));
             StringAssert.Equals(musicInfo.Album, album);
         }
 
+        /// <summary>
+        /// Rights the title.
+        /// </summary>
         [TestMethod]
-        public void rightTitle()
+        public void RightTitle()
         {
             MusicInfo musicInfo = MP3Analysis.Instance.GetInfo(new System.IO.FileInfo(filepfad));
             StringAssert.Equals(musicInfo.Title, title);
         }
 
+        /// <summary>
+        /// Rights the artist.
+        /// </summary>
         [TestMethod]
-        public void rightArtist()
+        public void RightArtist()
         {
             MusicInfo musicInfo = MP3Analysis.Instance.GetInfo(new System.IO.FileInfo(filepfad));
             StringAssert.Equals(musicInfo.Artist, artist);

@@ -11,13 +11,22 @@ namespace Juke_Mobile_Model
 {
     public class PlayRequestManager
     {
-        public void savePlayRequest(PlayRequest playRequest)
+        /// <summary>
+        /// Saves the play request.
+        /// </summary>
+        /// <param name="playRequest">The play request.</param>
+        public void SavePlayRequest(PlayRequest playRequest)
         {
             Db.Instance.Store(playRequest);
             Db.Instance.SaveChanges();
         }
 
-        public PlayRequest getNextRequest(PlayRequest.PlayRequestTypeEnum PlayRequestType)
+        /// <summary>
+        /// Gets the next request.
+        /// </summary>
+        /// <param name="PlayRequestType">Type of the play request.</param>
+        /// <returns></returns>
+        public PlayRequest GetNextRequest(PlayRequest.PlayRequestTypeEnum PlayRequestType)
         {
             PlayRequest playRequest = Db.Instance.Query<PlayRequest>()
            .Where(pr => pr.PlayRequestType == PlayRequestType)
@@ -26,20 +35,24 @@ namespace Juke_Mobile_Model
             return playRequest;
         }
 
-        public PlayRequest getNextRequest()
+        /// <summary>
+        /// Gets the next request.
+        /// </summary>
+        /// <returns></returns>
+        public PlayRequest GetNextRequest()
         {
-            PlayRequest playRequest = Db.Instance.Query<PlayRequest>()
-           .Where(pr => pr.PlayRequestType == PlayRequest.PlayRequestTypeEnum.Queue)
-           .First<PlayRequest>();
-
-            return playRequest;
+            return GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
         }
 
-        public List<PlayRequest> getPlayList(PlayRequest.PlayRequestTypeEnum PlayRequestType)
+        /// <summary>
+        /// Gets the play list.
+        /// </summary>
+        /// <param name="PlayRequestType">Type of the play request.</param>
+        /// <returns></returns>
+        public List<PlayRequest> GetPlayList(PlayRequest.PlayRequestTypeEnum PlayRequestType)
         {
             List<PlayRequest> playRequestList = Db.Instance.Query<PlayRequest>()
           .Where(pr => pr.PlayRequestType == PlayRequest.PlayRequestTypeEnum.Queue).ToList<PlayRequest>();
-
 
             return playRequestList;
         }
