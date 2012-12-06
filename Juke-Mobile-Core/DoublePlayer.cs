@@ -80,7 +80,7 @@ namespace Juke_Mobile_Core
         public void Play()
         {
             // faking 1st load from query
-            Load(new Uri(@"C:\Users\Thomas\Music\01 - Sonnentanz (Original Version).mp3"));
+            //Load(new Uri(@"C:\Users\Thomas\Music\01 - Sonnentanz (Original Version).mp3"));
 
             Active.Play();
         }

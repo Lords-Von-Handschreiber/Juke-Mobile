@@ -37,6 +37,11 @@ namespace Juke_Mobile_Gui
             QueueList.DataContext = uploadedTracks;
             Db.Attach(this);
 
+            var musicinfos = Db.Instance.Query<MusicInfo>();
+            foreach (var musicinfo in musicinfos)
+            {
+                uploadedTracks.Add(musicinfo);
+            }
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
 
             //QueueList.DataContext = Db.Instance.Query<dynamic>()
@@ -62,7 +67,7 @@ namespace Juke_Mobile_Gui
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             if (_server != null)
-                return;
+                return;            
 
             HttpSelfHostConfiguration cfg = HttpSelfHostConfigurationFactory.CreateInstance();
             cfg.Filters.Add(new RavenDbApiAttribute(DbDocumentStore.Instance));
@@ -105,6 +110,8 @@ namespace Juke_Mobile_Gui
         /// <param name="e">The <see cref="RoutedEventArgs" /> instance containing the event data.</param>
         private void Player1Play_Click(object sender, RoutedEventArgs e)
         {
+            //MusicInfo mi = (MusicInfo)QueueList.SelectedItem;
+            //_player.Load(new Uri(mi.PhysicalPath));
             _player.Play();
         }
 
