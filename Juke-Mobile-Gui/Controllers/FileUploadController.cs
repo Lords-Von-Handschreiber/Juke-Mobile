@@ -45,7 +45,15 @@ namespace Juke_Mobile_Gui.Controllers
                 File.Move(data.LocalFileName, strNewFileFullName);
                 FileInfo fi = new FileInfo(strNewFileFullName);
                 MusicInfo info = MP3Analysis.Instance.GetInfo(fi);
-                Db.AddItemWithUpdate(info);
+                var result = Db.Instance.Query<MusicInfo>().Where(m => m.Title.Equals(info.Title) && m.Artist.Equals(info.Artist) && m.Album.Equals(info.Album)).SingleOrDefault();
+                if (result == null)
+                {
+                    Db.AddItemWithUpdate(info);
+                }
+                else
+                {
+                    File.Delete(info.PhysicalPath);
+                }
             }
         }
     }
