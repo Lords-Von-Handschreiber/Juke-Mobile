@@ -56,7 +56,14 @@
 
             <!-- Player 1 -->
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
-                <TextBlock Text="Klangkarusell - Sonnentanz" VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
+                <TextBlock VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended">
+                    <TextBlock.Text>
+                        <MultiBinding  StringFormat="{}{0} — {1}">
+                            <Binding ElementName="QueueList" Path="SelectedItem.Artist"/>
+                            <Binding ElementName="QueueList" Path="SelectedItem.Title"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
                 <ProgressBar Height="10" Name="Player1Progress" MouseLeftButtonUp="Player1Progress_MouseLeftButtonUp"/>
                 <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player1Remaining"/>
             </StackPanel>
