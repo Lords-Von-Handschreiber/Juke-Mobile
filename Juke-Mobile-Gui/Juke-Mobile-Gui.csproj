@@ -142,6 +142,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\FileUploadController.cs" />
+    <Compile Include="Controllers\MusicInfoController.cs" />
     <Compile Include="Controllers\RavenController.cs" />
     <Compile Include="Controllers\StaticFileController.cs" />
     <Compile Include="Helper\RavenDbApiAttribute.cs" />

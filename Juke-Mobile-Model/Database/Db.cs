@@ -84,5 +84,13 @@ namespace Juke_Mobile_Model.Database
                 }
             }
         }
+
+        public static void Request(string id)
+        {
+            foreach (IDbReceiver receiver in _receivers)
+            {
+                receiver.Update(id);
+            }
+        }
     }
 }
