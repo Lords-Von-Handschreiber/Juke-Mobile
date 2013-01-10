@@ -22,7 +22,7 @@ namespace Juke_Mobile_Gui.Controllers
     /// Because files get uploaded with GUID as name we have to rename them.
     /// After renaming the file information is to be stored in the database.
     /// </summary>
-    public class FileUploadController : ApiController
+    public class FileUploadController : RavenController
     {
         /// <summary>
         /// Uploads the file.
@@ -45,10 +45,10 @@ namespace Juke_Mobile_Gui.Controllers
                 File.Move(data.LocalFileName, strNewFileFullName);
                 FileInfo fi = new FileInfo(strNewFileFullName);
                 MusicInfo info = MP3Analysis.Instance.GetInfo(fi);
-                var result = Db.Instance.Query<MusicInfo>().Where(m => m.Title.Equals(info.Title) && m.Artist.Equals(info.Artist) && m.Album.Equals(info.Album)).SingleOrDefault();
+                var result = Db.Query<MusicInfo>().Where(m => m.Title.Equals(info.Title) && m.Artist.Equals(info.Artist) && m.Album.Equals(info.Album)).SingleOrDefault();
                 if (result == null)
                 {
-                    Db.AddItemWithUpdate(info);
+                    //Db.AddItemWithUpdate(info);
                 }
                 else
                 {
