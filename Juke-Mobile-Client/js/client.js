@@ -48,6 +48,14 @@ $(document).ready(function () {
         });
     } else if ($('#error-page').length > 0) {
         //ignore not logged in
+    } else if ($('#list-page').length > 0) {
+        $.ajax({
+            url: "/api/CurrentTrack"
+        }).done(function (o) {
+            $('#current-artist').html(o['Artist'] + ' (' + o['Album'] + ')');
+            $('#current-track').html(o['Title']);
+            $('#current-juker').html(o['Artist']);
+        });
     } else if (!IsUserNameSet()) {
         window.location.href = 'index.html';
     } else if ($('#add-page').length > 0) {
