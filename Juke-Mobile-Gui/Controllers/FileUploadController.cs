@@ -48,7 +48,17 @@ namespace Juke_Mobile_Gui.Controllers
                 var result = Db.Query<MusicInfo>().Where(m => m.Title.Equals(info.Title) && m.Artist.Equals(info.Artist) && m.Album.Equals(info.Album)).SingleOrDefault();
                 if (result == null)
                 {
-                    //Db.AddItemWithUpdate(info);
+                    Db.Store(info);
+                    Db.SaveChanges();
+                    PlayRequest req = new PlayRequest()
+                    {
+                        MusicInfo = info,
+                        RequestDateTime = DateTime.Today,
+                        //TODO Get Username and add it here 
+                        Username = "foobar",
+                        PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
+                    };
+                    PlayRequestManager.SavePlayRequest(req);                                                           
                 }
                 else
                 {

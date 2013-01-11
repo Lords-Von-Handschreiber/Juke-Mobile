@@ -10,7 +10,7 @@ namespace Juke_Mobile_Model.Database
     /// <summary>
     /// Database Observer
     /// </summary>
-    public interface IDbReceiver
+    public interface IPlayRequestReceiver
     {
         void Update(string id);
     }

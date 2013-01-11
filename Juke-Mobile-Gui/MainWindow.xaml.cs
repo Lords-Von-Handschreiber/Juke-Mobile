@@ -19,7 +19,7 @@ namespace Juke_Mobile_Gui
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IDbReceiver
+    public partial class MainWindow : Window, IPlayRequestReceiver
     {
         HttpSelfHostServer _server;
         /// <summary>
@@ -35,7 +35,7 @@ namespace Juke_Mobile_Gui
         {
             InitializeComponent();
             QueueList.DataContext = uploadedTracks;
-            Db.Attach(this);
+            PlayRequestManager.Attach(this);
 
             var musicinfos = Db.Instance.Query<MusicInfo>();
             foreach (var musicinfo in musicinfos)
@@ -85,7 +85,7 @@ namespace Juke_Mobile_Gui
         private void End_Click(object sender, RoutedEventArgs e)
         {
             CloseServer(sender, null);
-            Db.Detach(this);
+            PlayRequestManager.Detach(this);
         }
 
         /// <summary>

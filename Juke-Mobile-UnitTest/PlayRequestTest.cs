@@ -36,10 +36,10 @@ namespace Juke_Mobile_UnitTest
                 Username = "Chris"
             };
 
-            new PlayRequestManager().SavePlayRequest(pr1);
-            new PlayRequestManager().SavePlayRequest(pr2);
+            PlayRequestManager.SavePlayRequest(pr1);
+            PlayRequestManager.SavePlayRequest(pr2);
 
-            StringAssert.Equals(new PlayRequestManager().GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue), pr1);
+            StringAssert.Equals(PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue), pr1);
         }
 
         /// <summary>
@@ -70,10 +70,10 @@ namespace Juke_Mobile_UnitTest
                 Username = "Chris"
             };
 
-            new PlayRequestManager().SavePlayRequest(pr1);
-            new PlayRequestManager().SavePlayRequest(pr2);
+            PlayRequestManager.SavePlayRequest(pr1);
+            PlayRequestManager.SavePlayRequest(pr2);
 
-            List<PlayRequest> playRequests = new PlayRequestManager().GetPlayList(PlayRequest.PlayRequestTypeEnum.Queue);
+            List<PlayRequest> playRequests = PlayRequestManager.GetPlayList(PlayRequest.PlayRequestTypeEnum.Queue);
 
             StringAssert.Equals(playRequests[0], pr1);
             StringAssert.Equals(playRequests[1], pr2);

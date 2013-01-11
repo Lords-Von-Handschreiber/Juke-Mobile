@@ -25,7 +25,23 @@ namespace Juke_Mobile_Gui.Controllers
 
         // POST api/<controller>
         public void Post([FromBody]string value)
+        {            
+
+        }
+
+        public void Vote(string idMusicInfo, string userName)
         {
+            
+            
+            PlayRequest req = new PlayRequest()
+            {
+                MusicInfo = Db.Load<MusicInfo>(idMusicInfo),
+                RequestDateTime = DateTime.Today,
+                Username = userName,
+                PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
+            };
+
+            PlayRequestManager.SavePlayRequest(req);
         }
     }
 }

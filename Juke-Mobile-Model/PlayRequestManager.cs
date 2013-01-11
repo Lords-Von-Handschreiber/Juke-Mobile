@@ -9,16 +9,40 @@ using Juke_Mobile_Model.Database;
 
 namespace Juke_Mobile_Model
 {
-    public class PlayRequestManager
+    public static class PlayRequestManager
     {
+        private static List<IPlayRequestReceiver> _receivers = new List<IPlayRequestReceiver>();
+
+        /// <summary>
+        /// Attaches the specified receiver.
+        /// </summary>
+        /// <param name="receiver">The receiver.</param>
+        public static void Attach(IPlayRequestReceiver receiver)
+        {
+            _receivers.Add(receiver);
+        }
+
+        /// <summary>
+        /// Detaches the specified receiver.
+        /// </summary>
+        /// <param name="receiver">The receiver.</param>
+        public static void Detach(IPlayRequestReceiver receiver)
+        {
+            _receivers.Remove(receiver);
+        }
+
         /// <summary>
         /// Saves the play request.
         /// </summary>
         /// <param name="playRequest">The play request.</param>
-        public void SavePlayRequest(PlayRequest playRequest)
+        public static void SavePlayRequest(PlayRequest playRequest)
         {
             Db.Instance.Store(playRequest);
             Db.Instance.SaveChanges();
+            foreach (IPlayRequestReceiver receiver in _receivers)
+            {
+                receiver.Update(playRequest.Id);
+            }
         }
 
         /// <summary>
@@ -26,10 +50,11 @@ namespace Juke_Mobile_Model
         /// </summary>
         /// <param name="PlayRequestType">Type of the play request.</param>
         /// <returns></returns>
-        public PlayRequest GetNextRequest(PlayRequest.PlayRequestTypeEnum PlayRequestType)
+        public static PlayRequest GetNextRequest(PlayRequest.PlayRequestTypeEnum PlayRequestType)
         {
             PlayRequest playRequest = Db.Instance.Query<PlayRequest>()
            .Where(pr => pr.PlayRequestType == PlayRequestType)
+           .OrderBy(pr => pr.RequestDateTime)
            .First<PlayRequest>();
 
             return playRequest;
@@ -39,7 +64,7 @@ namespace Juke_Mobile_Model
         /// Gets the next request.
         /// </summary>
         /// <returns></returns>
-        public PlayRequest GetNextRequest()
+        public static PlayRequest GetNextRequest()
         {
             return GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
         }
@@ -49,7 +74,7 @@ namespace Juke_Mobile_Model
         /// </summary>
         /// <param name="PlayRequestType">Type of the play request.</param>
         /// <returns></returns>
-        public List<PlayRequest> GetPlayList(PlayRequest.PlayRequestTypeEnum PlayRequestType)
+        public  static List<PlayRequest> GetPlayList(PlayRequest.PlayRequestTypeEnum PlayRequestType)
         {
             List<PlayRequest> playRequestList = Db.Instance.Query<PlayRequest>()
           .Where(pr => pr.PlayRequestType == PlayRequest.PlayRequestTypeEnum.Queue).ToList<PlayRequest>();
