@@ -30,14 +30,14 @@ namespace Juke_Mobile_Gui.Controllers
         /// <returns></returns>
         /// <exception cref="System.Web.Http.HttpResponseException"></exception>
         [HttpPost]
-        public async Task UploadFile()
+        public async Task UploadFile(string username)
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
             MultipartFormDataStreamProvider streamProvider = new MultipartFormDataStreamProvider(Settings.Default.ServerUploadPath);
-            await Request.Content.ReadAsMultipartAsync(streamProvider);
+            await Request.Content.ReadAsMultipartAsync(streamProvider);            
             foreach (MultipartFileData data in streamProvider.FileData)
             {
                 string strFileName = data.Headers.ContentDisposition.FileName.Trim('"');
@@ -54,8 +54,7 @@ namespace Juke_Mobile_Gui.Controllers
                     {
                         MusicInfo = info,
                         RequestDateTime = DateTime.Today,
-                        //TODO Get Username and add it here 
-                        Username = "foobar",
+                        Username = username,
                         PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
                     };
                     PlayRequestManager.SavePlayRequest(req);                                                           
@@ -65,6 +64,6 @@ namespace Juke_Mobile_Gui.Controllers
                     File.Delete(info.PhysicalPath);
                 }
             }
-        }
+        }        
     }
 }

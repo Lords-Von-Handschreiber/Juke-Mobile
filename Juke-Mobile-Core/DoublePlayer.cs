@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Juke_Mobile_Model.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Windows.Threading;
 
 namespace Juke_Mobile_Core
 {
+    public delegate void MediaEnded();
     public class DoublePlayer
     {
         TimeSpan _positionPlayer1;
@@ -41,6 +43,9 @@ namespace Juke_Mobile_Core
         /// </value>
         public MediaElement InActive { get; private set; }
 
+        public event MediaEnded mediaEnded;        
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DoublePlayer" /> class.
         /// </summary>
@@ -56,12 +61,14 @@ namespace Juke_Mobile_Core
             _player1.MediaOpened += _player1_MediaOpened;
             _player1.LoadedBehavior = MediaState.Manual;
             _player1.UnloadedBehavior = MediaState.Stop;
+            _player1.MediaEnded += _player1_MediaEnded;
             _progress1 = progress1;
             _remaining1 = remaining1;
             _player2 = p2;
             _player2.MediaOpened += _player2_MediaOpened;
             _player2.LoadedBehavior = MediaState.Manual;
             _player2.UnloadedBehavior = MediaState.Stop;
+            _player2.MediaEnded += _player2_MediaEnded;
             _progress2 = progress2;
             _remaining2 = remaining2;
 
@@ -72,6 +79,16 @@ namespace Juke_Mobile_Core
 
             Active = _player1;
             InActive = _player2;
+        }
+
+        void _player2_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            mediaEnded();
+        }
+
+        void _player1_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            mediaEnded();
         }
 
         /// <summary>

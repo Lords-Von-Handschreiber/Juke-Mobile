@@ -43,10 +43,16 @@ namespace Juke_Mobile_Gui
                 uploadedTracks.Add(musicinfo);
             }
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
+            _player.mediaEnded += _player_mediaEnded;
 
             //QueueList.DataContext = Db.Instance.Query<dynamic>()
 
             Application.Current.Exit += CloseServer;
+        }
+
+        void _player_mediaEnded()
+        {
+            
         }
 
         /// <summary>
