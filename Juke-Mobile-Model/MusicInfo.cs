@@ -60,7 +60,7 @@ namespace Juke_Mobile_Model
         /// </returns>
         public override int GetHashCode()
         {
-            return this.Album.GetHashCode() + this.Artist.GetHashCode() + this.Id.GetHashCode() + this.Title.GetHashCode();
+            return this.Album.GetHashCode() + this.Artist.GetHashCode() + this.Title.GetHashCode();
         }
     }
 }

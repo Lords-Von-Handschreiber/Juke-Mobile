@@ -37,7 +37,9 @@ namespace Juke_Mobile_Gui
             QueueList.DataContext = uploadedTracks;
             PlayRequestManager.Attach(this);
 
-            var musicinfos = Db.Instance.Query<MusicInfo>();
+            var dbSession = Db.Instance.OpenSession();
+            var musicinfos = dbSession.Query<MusicInfo>();
+            dbSession.Dispose();
             foreach (var musicinfo in musicinfos)
             {
                 uploadedTracks.Add(musicinfo);
@@ -52,7 +54,7 @@ namespace Juke_Mobile_Gui
 
         void _player_mediaEnded()
         {
-            
+
         }
 
         /// <summary>
@@ -205,12 +207,14 @@ namespace Juke_Mobile_Gui
         /// <param name="db"></param>
         public void Update(string id)
         {
-            MusicInfo info = Db.Instance.Load<MusicInfo>(id);
+            var dbSession = Db.Instance.OpenSession();
+            PlayRequest info = dbSession.Load<PlayRequest>(id);
+            dbSession.Dispose();
             System.Windows.Application.Current.Dispatcher.Invoke(
     System.Windows.Threading.DispatcherPriority.Normal,
     (Action)delegate()
     {
-        uploadedTracks.Add(info);
+        uploadedTracks.Add(info.MusicInfo);
     });
 
         }
