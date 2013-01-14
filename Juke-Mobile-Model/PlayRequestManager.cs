@@ -81,5 +81,11 @@ namespace Juke_Mobile_Model
 
             return playRequestList;
         }
+
+        public static void MovePlayRequestToHistory(PlayRequest req)
+        {
+            req.PlayRequestType = PlayRequest.PlayRequestTypeEnum.History;
+            Db.Instance.Store(req);
+        }
     }
 }
