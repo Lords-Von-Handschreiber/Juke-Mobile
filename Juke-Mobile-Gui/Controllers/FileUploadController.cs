@@ -30,7 +30,7 @@ namespace Juke_Mobile_Gui.Controllers
         /// <returns></returns>
         /// <exception cref="System.Web.Http.HttpResponseException"></exception>
         [HttpPost]
-        public async Task UploadFile(string username)
+        public async Task Post()
         {
             if (!Request.Content.IsMimeMultipartContent("form-data"))
             {
@@ -54,7 +54,7 @@ namespace Juke_Mobile_Gui.Controllers
                     {
                         MusicInfo = info,
                         RequestDateTime = DateTime.Today,
-                        Username = username,
+                        Username = "",
                         PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
                     };
                     PlayRequestManager.SavePlayRequest(req);                                                           

@@ -12,9 +12,18 @@ namespace Juke_Mobile_Gui.Controllers
     public class PlaylistController : RavenController
     {
         // GET api/<controller>
-        public IQueryable<PlayRequest> Get()
+        public dynamic Get()
         {
-            return Db.Query<PlayRequest>();
+            var pl = PlayRequestManager.GetPlayList(PlayRequest.PlayRequestTypeEnum.Queue);
+            var aaData = pl.Select(pr => new DTPlaylist(pr));
+
+            return new
+            {
+                sEcho = 1,
+                iTotalRecords = aaData.Count(),
+                iTotalDisplayRecords = aaData.Count(),
+                aaData = aaData
+            };
         }
 
         // GET api/<controller>/5
@@ -25,14 +34,14 @@ namespace Juke_Mobile_Gui.Controllers
 
         // POST api/<controller>
         public void Post([FromBody]string value)
-        {            
+        {
 
         }
 
         public void Vote(string idMusicInfo, string userName)
         {
-            
-            
+
+
             PlayRequest req = new PlayRequest()
             {
                 MusicInfo = Db.Load<MusicInfo>(idMusicInfo),

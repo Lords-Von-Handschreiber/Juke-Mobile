@@ -15,7 +15,7 @@ namespace Juke_Mobile_Model.Database
     /// </summary>
     public sealed class Db
     {
-        private static volatile IDocumentSession instance;
+        private static volatile IDocumentStore instance;
         private static object syncRoot = new Object();
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Juke_Mobile_Model.Database
         /// <value>
         /// The instance.
         /// </value>
-        public static IDocumentSession Instance
+        public static IDocumentStore Instance
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Juke_Mobile_Model.Database
                     {
                         if (instance == null)
                         {
-                            instance = DbDocumentStore.Instance.OpenSession();
+                            instance = DbDocumentStore.Instance; //.OpenSession();
                         }
                     }
                 }

@@ -49,12 +49,34 @@ $(document).ready(function () {
     } else if ($('#error-page').length > 0) {
         //ignore not logged in
     } else if ($('#list-page').length > 0) {
+        $('#playlist').dataTable({
+            "sPaginationType": "bootstrap",
+            "sAjaxSource": "/api/Playlist",
+            "bProcessing": true,
+            "aoColumns": [
+                { "mData": "Nr" },
+                { "mData": "Artist" },
+                { "mData": "Title" },
+                { "mData": "Juker" }
+            ],
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ Einträge pro Seite"
+            }
+        });
+        $.extend($.fn.dataTableExt.oStdClasses, {
+            "sSortAsc": "header headerSortDown",
+            "sSortDesc": "header headerSortUp",
+            "sSortable": "header"
+        });
+
         $.ajax({
             url: "/api/CurrentTrack"
         }).done(function (o) {
-            $('#current-artist').html(o['Artist'] + ' (' + o['Album'] + ')');
-            $('#current-track').html(o['Title']);
-            $('#current-juker').html(o['Artist']);
+            if (o) {
+                $('#current-artist').html(o['Artist'] + ' (' + o['Album'] + ')');
+                $('#current-track').html(o['Title']);
+                $('#current-juker').html(o['Username']);
+            }
         });
     } else if (!IsUserNameSet()) {
         window.location.href = 'index.html';
