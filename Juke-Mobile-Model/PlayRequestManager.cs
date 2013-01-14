@@ -84,6 +84,8 @@ namespace Juke_Mobile_Model
             req.PlayRequestType = PlayRequest.PlayRequestTypeEnum.History;
             var dbSession = Db.Instance.OpenSession();
             dbSession.Store(req);
+            dbSession.SaveChanges();
+            dbSession.Dispose();
         }
     }
 }

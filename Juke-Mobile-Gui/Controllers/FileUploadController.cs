@@ -62,6 +62,14 @@ namespace Juke_Mobile_Gui.Controllers
                 else
                 {
                     File.Delete(info.PhysicalPath);
+                    PlayRequest req = new PlayRequest()
+                    {
+                        MusicInfo = result,
+                        RequestDateTime = DateTime.Today,
+                        Username = "",
+                        PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
+                    };
+                    PlayRequestManager.SavePlayRequest(req);
                 }
             }
         }        

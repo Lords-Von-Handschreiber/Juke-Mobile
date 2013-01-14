@@ -25,7 +25,7 @@ namespace Juke_Mobile_Gui
         /// <summary>
         /// public static for threadsafety. List that updates UI
         /// </summary>
-        public static ObservableCollection<MusicInfo> uploadedTracks = new ObservableCollection<MusicInfo>();
+        public static ObservableCollection<PlayRequest> uploadedTracks = new ObservableCollection<PlayRequest>();
         DoublePlayer _player;
 
         /// <summary>
@@ -35,26 +35,32 @@ namespace Juke_Mobile_Gui
         {
             InitializeComponent();
             QueueList.DataContext = uploadedTracks;
+
             PlayRequestManager.Attach(this);
-
-            var dbSession = Db.Instance.OpenSession();
-            var musicinfos = dbSession.Query<MusicInfo>();
-            dbSession.Dispose();
-            foreach (var musicinfo in musicinfos)
+            List<PlayRequest> requests = PlayRequestManager.GetPlayList(PlayRequest.PlayRequestTypeEnum.Queue);
+            foreach (var request in requests)
             {
-                uploadedTracks.Add(musicinfo);
+                uploadedTracks.Add(request);
             }
-            _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
-            _player.mediaEnded += _player_mediaEnded;
 
-            //QueueList.DataContext = Db.Instance.Query<dynamic>()
+            _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
+            _player.mediaEnded += _player_mediaEnded;            
 
             Application.Current.Exit += CloseServer;
         }
 
+        //Event Handling if song stopped.
         void _player_mediaEnded()
         {
-
+            PlayRequest info = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
+            PlayRequestManager.MovePlayRequestToHistory(info);
+            PlayRequest  req = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
+            if (req != null)
+            {
+                _player.Load(new Uri(req.MusicInfo.PhysicalPath));
+                _player.Play();
+            }
+            uploadedTracks.Remove(info);
         }
 
         /// <summary>
@@ -211,11 +217,11 @@ namespace Juke_Mobile_Gui
             PlayRequest info = dbSession.Load<PlayRequest>(id);
             dbSession.Dispose();
             System.Windows.Application.Current.Dispatcher.Invoke(
-    System.Windows.Threading.DispatcherPriority.Normal,
-    (Action)delegate()
-    {
-        uploadedTracks.Add(info.MusicInfo);
-    });
+                System.Windows.Threading.DispatcherPriority.Normal,
+                (Action)delegate()
+                {
+                    uploadedTracks.Add(info);
+            });
 
         }
     }

@@ -48,7 +48,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <TextBlock Text="{Binding Path=Title}"/>
+                            <TextBlock Text="{Binding Path=MusicInfo.Title}"/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -59,8 +59,8 @@
                 <TextBlock VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended">
                     <TextBlock.Text>
                         <MultiBinding  StringFormat="{}{0} — {1}">
-                            <Binding ElementName="QueueList" Path="SelectedItem.Artist"/>
-                            <Binding ElementName="QueueList" Path="SelectedItem.Title"/>
+                            <Binding ElementName="QueueList" Path="SelectedItem.MusicInfo.Artist"/>
+                            <Binding ElementName="QueueList" Path="SelectedItem.MusicInfo.Title"/>
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
@@ -83,7 +83,7 @@
                 <Slider AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" Minimum="0" Maximum="2" Value="{Binding ElementName=Player2, Path=SpeedRatio}" ToolTip="SpeedRatio" Orientation="Vertical"/>
             </StackPanel>
 
-            <MediaElement Grid.Row="3" Grid.Column="0" Name="Player1" Source="{Binding ElementName=QueueList,Path=SelectedItem.PhysicalPath}"/>
+            <MediaElement Grid.Row="3" Grid.Column="0" Name="Player1" Source="{Binding ElementName=QueueList,Path=SelectedItem.MusicInfo.PhysicalPath}"/>
             <Slider Grid.Row="3" Grid.Column="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" Minimum="-1" Value="-1" Maximum="1" ToolTip="Balance" ValueChanged="Balance_ValueChanged" Name="Balance"/>
             <MediaElement Grid.Row="3" Grid.Column="2" Name="Player2"/>
 
