@@ -52,23 +52,23 @@ $(document).ready(function () {
         $('#playlist').dataTable({
             "sPaginationType": "bootstrap",
             "sAjaxSource": "/api/Playlist",
-            "bProcessing": true,
             "aoColumns": [
-                { "mData": "Nr" },
                 { "mData": "Artist" },
                 { "mData": "Title" },
                 { "mData": "Juker" }
             ],
+            "fnDrawCallback": function (oSettings) {
+                /* Need to redo the counters if filtered or sorted */
+                if (oSettings.bSorted || oSettings.bFiltered) {
+                    for (var i = 0, iLen = oSettings.aiDisplay.length ; i < iLen ; i++) {
+                        $('td:eq(0)', oSettings.aoData[oSettings.aiDisplay[i]].nTr).html(i + 1);
+                    }
+                }
+            },
             "oLanguage": {
                 "sLengthMenu": "_MENU_ Einträge pro Seite"
             }
         });
-        $.extend($.fn.dataTableExt.oStdClasses, {
-            "sSortAsc": "header headerSortDown",
-            "sSortDesc": "header headerSortUp",
-            "sSortable": "header"
-        });
-
         $.ajax({
             url: "/api/CurrentTrack"
         }).done(function (o) {
