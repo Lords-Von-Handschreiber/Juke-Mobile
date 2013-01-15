@@ -12,9 +12,10 @@ namespace Juke_Mobile_Gui.Controllers
     public class CurrentTrackController : RavenController
     {
         // GET api/<controller>
-        public PlayRequest Get()
+        public DTPlayRequest Get()
         {
-            return PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Current);
+            var pr = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
+            return pr != null ? new DTPlayRequest(pr) : null;
         }
     }
 }

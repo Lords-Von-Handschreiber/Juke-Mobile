@@ -15,7 +15,7 @@ namespace Juke_Mobile_Gui.Controllers
         public dynamic Get()
         {
             var pl = PlayRequestManager.GetPlayList(PlayRequest.PlayRequestTypeEnum.Queue);
-            var aaData = pl.Select(pr => new DTPlaylist(pr));
+            var aaData = pl.Skip(1).Select(pr => new DTPlayRequest(pr));
 
             return new
             {
@@ -24,18 +24,6 @@ namespace Juke_Mobile_Gui.Controllers
                 iTotalDisplayRecords = aaData.Count(),
                 aaData = aaData
             };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
-        {
-
         }
 
         public void Vote(string idMusicInfo, string userName)

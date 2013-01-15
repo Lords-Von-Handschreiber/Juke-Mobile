@@ -10,7 +10,7 @@ using System.Windows.Threading;
 
 namespace Juke_Mobile_Core
 {
-    public delegate void MediaEnded();
+    public delegate void MediaEnded(object sender, EventArgs e);
     public class DoublePlayer
     {
         TimeSpan _positionPlayer1;
@@ -83,12 +83,12 @@ namespace Juke_Mobile_Core
 
         void _player2_MediaEnded(object sender, RoutedEventArgs e)
         {
-            mediaEnded();
+            mediaEnded(sender, e);
         }
 
         void _player1_MediaEnded(object sender, RoutedEventArgs e)
         {
-            mediaEnded();
+            mediaEnded(sender, e);
         }
 
         /// <summary>

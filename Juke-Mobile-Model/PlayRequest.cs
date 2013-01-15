@@ -10,13 +10,14 @@ namespace Juke_Mobile_Model
 {
     public class PlayRequest
     {
-        public enum PlayRequestTypeEnum { Queue, History, Current };
+        public enum PlayRequestTypeEnum { Queue, History };
 
         public string Id { get; set; }
         public MusicInfo MusicInfo { get; set; }
         public DateTime RequestDateTime { get; set; }
         public String Username { get; set; }
         public PlayRequestTypeEnum PlayRequestType { get; set; }
+        public DateTime PlayedDateTime { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -28,5 +29,6 @@ namespace Juke_Mobile_Model
         {
             return MusicInfo.Title + " gewünscht von " + Username;
         }
+
     }
 }
