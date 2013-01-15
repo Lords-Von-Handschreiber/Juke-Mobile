@@ -43,6 +43,11 @@ namespace Juke_Mobile_Gui
                 uploadedTracks.Add(request);
             }
 
+            if (uploadedTracks.Count != 0)
+            {
+                QueueList.SelectedIndex = 0;
+            }
+
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
             _player.mediaEnded += _player_mediaEnded;            
 
@@ -52,6 +57,8 @@ namespace Juke_Mobile_Gui
         //Event Handling if song stopped.
         void _player_mediaEnded()
         {
+            uploadedTracks.RemoveAt(0);
+            QueueList.SelectedIndex = 0;
             PlayRequest info = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
             PlayRequestManager.MovePlayRequestToHistory(info);
             PlayRequest  req = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
@@ -60,7 +67,11 @@ namespace Juke_Mobile_Gui
                 _player.Load(new Uri(req.MusicInfo.PhysicalPath));
                 _player.Play();
             }
-            uploadedTracks.Remove(info);
+            else
+            {
+                _player.Stop();
+            }            
+            
         }
 
         /// <summary>
@@ -220,7 +231,13 @@ namespace Juke_Mobile_Gui
                 System.Windows.Threading.DispatcherPriority.Normal,
                 (Action)delegate()
                 {
+                    bool isFirstTrack = uploadedTracks.Count == 0;
+                    
                     uploadedTracks.Add(info);
+                    if (isFirstTrack)
+                    {
+                        QueueList.SelectedIndex = 0;
+                    }
             });
 
         }
