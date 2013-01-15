@@ -57,14 +57,7 @@ $(document).ready(function () {
                 { "mData": "Title" },
                 { "mData": "Juker" }
             ],
-            "fnDrawCallback": function (oSettings) {
-                /* Need to redo the counters if filtered or sorted */
-                if (oSettings.bSorted || oSettings.bFiltered) {
-                    for (var i = 0, iLen = oSettings.aiDisplay.length ; i < iLen ; i++) {
-                        $('td:eq(0)', oSettings.aoData[oSettings.aiDisplay[i]].nTr).html(i + 1);
-                    }
-                }
-            },
+            "bSort": false,
             "oLanguage": {
                 "sLengthMenu": "_MENU_ Einträge pro Seite"
             }
@@ -73,7 +66,7 @@ $(document).ready(function () {
             url: "/api/CurrentTrack"
         }).done(function (o) {
             if (o) {
-                $('#current-artist').html(o['Artist'] + ' (' + o['Album'] + ')');
+                $('#current-artist').html(o['Artist']);
                 $('#current-track').html(o['Title']);
                 $('#current-juker').html(o['Username']);
             }
