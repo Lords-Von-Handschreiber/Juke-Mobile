@@ -241,5 +241,38 @@ namespace Juke_Mobile_Gui
             });
 
         }
+
+        private void ImportFolder_Click(object sender, RoutedEventArgs e)
+        {
+            MusicInfoImporter importer = new MusicInfoImporter();
+            System.Windows.Forms.FolderBrowserDialog fdialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult res = fdialog.ShowDialog();
+            if (res == System.Windows.Forms.DialogResult.OK && !string.IsNullOrEmpty(fdialog.SelectedPath))
+            {
+                DirectoryInfo dinfo = new DirectoryInfo(fdialog.SelectedPath);
+                if(dinfo.Exists){
+                    importer.ImportFolder(dinfo);
+                }
+            }
+        }
+
+        private void ImportFile_Click(object sender, RoutedEventArgs e)
+        {
+            MusicInfoImporter importer = new MusicInfoImporter();
+            System.Windows.Forms.OpenFileDialog fdialog = new System.Windows.Forms.OpenFileDialog();
+            fdialog.Multiselect = true;
+            System.Windows.Forms.DialogResult res = fdialog.ShowDialog();
+            if (res == System.Windows.Forms.DialogResult.OK && fdialog.FileNames.Length != 0)
+            {
+                foreach (string filename in fdialog.FileNames)
+                {
+                    FileInfo finfo = new FileInfo(filename);
+                    if (finfo.Exists)
+                    {
+                        importer.ImportMusic(finfo);
+                    }
+                }
+            }
+        }
     }
 }

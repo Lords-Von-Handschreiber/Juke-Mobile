@@ -8,6 +8,8 @@
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Click="MenuItem_Click"/>
+                <MenuItem Header="_Import Folder" Click="ImportFolder_Click"/>
+                <MenuItem Header="_Import File" Click="ImportFile_Click"/>
             </MenuItem>
             <MenuItem Header="_Web Server">
                 <MenuItem Header="_Start" Click="Start_Click"/>

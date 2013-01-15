@@ -45,6 +45,7 @@ namespace Juke_Mobile_Core
                     }
                     else
                     {
+                        file.Delete();
                         info = result;
                     }
                 }
