@@ -19,7 +19,7 @@ namespace Juke_Mobile_Gui
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IPlayRequestReceiver
+    public partial class MainWindow : Window, IPlayRequestReceiver, IDisposable
     {
         HttpSelfHostServer _server;
         /// <summary>
@@ -55,7 +55,7 @@ namespace Juke_Mobile_Gui
         }
 
         //Event Handling if song stopped.
-        void _player_mediaEnded()
+        void _player_mediaEnded(object sender, EventArgs e)
         {
             uploadedTracks.RemoveAt(0);
             QueueList.SelectedIndex = 0;
@@ -240,6 +240,22 @@ namespace Juke_Mobile_Gui
                     }
             });
 
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+            return;
+        }
+
+        protected virtual void Dispose(bool b)
+        {
+            if (b)
+            {
+                _server.Dispose();
+                _player = null;
+            }
         }
     }
 }
