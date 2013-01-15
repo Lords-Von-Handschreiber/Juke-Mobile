@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using Juke_Mobile_Gui.Properties;
 using Juke_Mobile_Model;
 using Juke_Mobile_Model.Database;
+using Juke_Mobile_Core;
 
 namespace Juke_Mobile_Gui.Controllers
 {
@@ -37,19 +38,17 @@ namespace Juke_Mobile_Gui.Controllers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
             MultipartFormDataStreamProvider streamProvider = new MultipartFormDataStreamProvider(Settings.Default.ServerUploadPath);
-            await Request.Content.ReadAsMultipartAsync(streamProvider);            
+            await Request.Content.ReadAsMultipartAsync(streamProvider);
+            MusicInfoImporter importer = new MusicInfoImporter();
             foreach (MultipartFileData data in streamProvider.FileData)
             {
                 string strFileName = data.Headers.ContentDisposition.FileName.Trim('"');
                 string strNewFileFullName = Settings.Default.ServerUploadPath + "\\" + Guid.NewGuid() + "_" + strFileName;
                 File.Move(data.LocalFileName, strNewFileFullName);
                 FileInfo fi = new FileInfo(strNewFileFullName);
-                MusicInfo info = MP3Analysis.Instance.GetInfo(fi);
-                var result = Db.Query<MusicInfo>().Where(m => m.Title.Equals(info.Title) && m.Artist.Equals(info.Artist) && m.Album.Equals(info.Album)).SingleOrDefault();
-                if (result == null)
+                MusicInfo info = importer.ImportMusic(fi);
+                if (info != null)
                 {
-                    Db.Store(info);
-                    Db.SaveChanges();
                     PlayRequest req = new PlayRequest()
                     {
                         MusicInfo = info,
@@ -57,20 +56,8 @@ namespace Juke_Mobile_Gui.Controllers
                         Username = "",
                         PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
                     };
-                    PlayRequestManager.SavePlayRequest(req);                                                           
-                }
-                else
-                {
-                    File.Delete(info.PhysicalPath);
-                    PlayRequest req = new PlayRequest()
-                    {
-                        MusicInfo = result,
-                        RequestDateTime = DateTime.Today,
-                        Username = "",
-                        PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
-                    };
                     PlayRequestManager.SavePlayRequest(req);
-                }
+                }                
             }
         }        
     }
