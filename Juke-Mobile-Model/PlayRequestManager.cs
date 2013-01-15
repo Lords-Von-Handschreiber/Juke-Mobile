@@ -74,7 +74,7 @@ namespace Juke_Mobile_Model
         {
             var dbSession = Db.Instance.OpenSession();
             List<PlayRequest> playRequestList = dbSession.Query<PlayRequest>()
-                .Where(pr => pr.PlayRequestType == PlayRequest.PlayRequestTypeEnum.Queue).ToList<PlayRequest>();
+                .Where(pr => pr.PlayRequestType == PlayRequestType).ToList<PlayRequest>();
             dbSession.Dispose();
             return playRequestList;
         }
