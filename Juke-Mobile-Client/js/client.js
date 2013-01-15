@@ -75,5 +75,20 @@ $(document).ready(function () {
         window.location.href = 'index.html';
     } else if ($('#add-page').length > 0) {
         $('#myTab a:first').tab('show');
+    } else if ($('#history-page').length > 0) {
+        $('#historylist').dataTable({
+            "sPaginationType": "bootstrap",
+            "sAjaxSource": "/api/Historylist",
+            "aoColumns": [
+                { "mData": "Zeit" },
+                { "mData": "Artist" },
+                { "mData": "Title" },
+                { "mData": "Juker" }
+            ],
+            "bSort": false,
+            "oLanguage": {
+                "sLengthMenu": "_MENU_ Einträge pro Seite"
+            }
+        });
     }
 });
