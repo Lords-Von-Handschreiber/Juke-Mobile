@@ -15,7 +15,7 @@ namespace Juke_Mobile_Gui.Controllers
         public dynamic Get()
         {
             var pl = PlayRequestManager.GetPlayList(PlayRequest.PlayRequestTypeEnum.Queue);
-            var aaData = pl.Select(pr => new DTPlaylist(pr));
+            var aaData = pl.Skip(1).Select(pr => new DTPlayRequest(pr));
 
             return new
             {

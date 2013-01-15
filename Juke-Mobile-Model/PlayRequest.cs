@@ -10,7 +10,7 @@ namespace Juke_Mobile_Model
 {
     public class PlayRequest
     {
-        public enum PlayRequestTypeEnum { Queue, History, Current };
+        public enum PlayRequestTypeEnum { Queue, History };
 
         public string Id { get; set; }
         public MusicInfo MusicInfo { get; set; }

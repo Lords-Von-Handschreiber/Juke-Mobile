@@ -108,7 +108,7 @@
     <Compile Include="Database\Db.cs" />
     <Compile Include="Database\DbDocumentStore.cs" />
     <Compile Include="Database\IDbReceiver.cs" />
-    <Compile Include="DTPlaylist.cs" />
+    <Compile Include="DTPlayRequest.cs" />
     <Compile Include="MP3Analysis.cs" />
     <Compile Include="MusicInfo.cs" />
     <Compile Include="PlayRequest.cs" />
