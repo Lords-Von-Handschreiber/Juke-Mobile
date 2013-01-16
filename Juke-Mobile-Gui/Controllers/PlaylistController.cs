@@ -29,16 +29,19 @@ namespace Juke_Mobile_Gui.Controllers
         public void Vote(string idMusicInfo, string userName)
         {
 
-
-            PlayRequest req = new PlayRequest()
+            MusicInfo infotemp = Db.Load<MusicInfo>(idMusicInfo);
+            if (infotemp != null)
             {
-                MusicInfo = Db.Load<MusicInfo>(idMusicInfo),
-                RequestDateTime = DateTime.Today,
-                Username = userName,
-                PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
-            };
+                PlayRequest req = new PlayRequest()
+                {
+                    MusicInfo = infotemp,
+                    RequestDateTime = DateTime.Today,
+                    Username = userName,
+                    PlayRequestType = PlayRequest.PlayRequestTypeEnum.Queue
+                };
 
-            PlayRequestManager.SavePlayRequest(req);
+                PlayRequestManager.SavePlayRequest(req);
+            }
         }
     }
 }

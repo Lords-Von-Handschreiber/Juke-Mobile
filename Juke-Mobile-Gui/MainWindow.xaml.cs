@@ -27,6 +27,7 @@ namespace Juke_Mobile_Gui
         /// </summary>
         public static ObservableCollection<PlayRequest> uploadedTracks = new ObservableCollection<PlayRequest>();
         DoublePlayer _player;
+        private IMusicInfoImporter importer = new MusicInfoImporterNoDelete();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow" /> class.
@@ -244,7 +245,6 @@ namespace Juke_Mobile_Gui
 
         private void ImportFolder_Click(object sender, RoutedEventArgs e)
         {
-            MusicInfoImporter importer = new MusicInfoImporter();
             System.Windows.Forms.FolderBrowserDialog fdialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult res = fdialog.ShowDialog();
             if (res == System.Windows.Forms.DialogResult.OK && !string.IsNullOrEmpty(fdialog.SelectedPath))
@@ -257,8 +257,7 @@ namespace Juke_Mobile_Gui
         }
 
         private void ImportFile_Click(object sender, RoutedEventArgs e)
-        {
-            MusicInfoImporter importer = new MusicInfoImporter();
+        {            
             System.Windows.Forms.OpenFileDialog fdialog = new System.Windows.Forms.OpenFileDialog();
             fdialog.Multiselect = true;
             System.Windows.Forms.DialogResult res = fdialog.ShowDialog();

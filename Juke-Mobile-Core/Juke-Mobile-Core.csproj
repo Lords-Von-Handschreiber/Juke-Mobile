@@ -106,7 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoublePlayer.cs" />
+    <Compile Include="IMusicInfoImporter.cs" />
     <Compile Include="MusicInfoImporter.cs" />
+    <Compile Include="MusicInfoImporterNoDelete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

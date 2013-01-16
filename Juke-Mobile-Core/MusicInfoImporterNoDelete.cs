@@ -10,7 +10,7 @@ using TagLib;
 
 namespace Juke_Mobile_Core
 {
-    public class MusicInfoImporter : IMusicInfoImporter
+    public class MusicInfoImporterNoDelete: IMusicInfoImporter
     {
         /// <summary>
         /// array that contains all supported file extensions.
@@ -49,7 +49,6 @@ namespace Juke_Mobile_Core
                     }
                     else
                     {
-                        file.Delete();
                         info = result;
                     }
                 }
