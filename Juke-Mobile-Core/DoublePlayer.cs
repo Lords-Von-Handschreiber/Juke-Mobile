@@ -98,7 +98,7 @@ namespace Juke_Mobile_Core
         {
             // faking 1st load from query
             //Load(new Uri(@"C:\Users\Thomas\Music\01 - Sonnentanz (Original Version).mp3"));
-
+            _timerPlayer1.Start();
             Active.Play();
         }
 
@@ -116,6 +116,7 @@ namespace Juke_Mobile_Core
         public void Stop()
         {
             Active.Stop();
+            _timerPlayer1.Stop();
         }
 
         /// <summary>
