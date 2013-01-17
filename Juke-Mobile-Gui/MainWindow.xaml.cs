@@ -50,7 +50,7 @@ namespace Juke_Mobile_Gui
             }
 
             _player = new DoublePlayer(Player1, Player1Progress, Player1Remaining, Player2, Player2Progress, Player2Remaining);
-            _player.mediaEnded += _player_mediaEnded;            
+            _player.mediaEnded += _player_mediaEnded;
 
             Application.Current.Exit += CloseServer;
         }
@@ -59,21 +59,17 @@ namespace Juke_Mobile_Gui
         void _player_mediaEnded(object sender, EventArgs e)
         {
             _player.Stop();
+
             uploadedTracks.RemoveAt(0);
             QueueList.SelectedIndex = 0;
             PlayRequest info = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
             PlayRequestManager.MovePlayRequestToHistory(info);
-            PlayRequest  req = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
+            PlayRequest req = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
             if (req != null)
             {
                 _player.Load(new Uri(req.MusicInfo.PhysicalPath));
                 _player.Play();
             }
-            else
-            {
-                _player.Stop();
-            }            
-            
         }
 
         /// <summary>
@@ -234,13 +230,13 @@ namespace Juke_Mobile_Gui
                 (Action)delegate()
                 {
                     bool isFirstTrack = uploadedTracks.Count == 0;
-                    
+
                     uploadedTracks.Add(info);
                     if (isFirstTrack)
                     {
                         QueueList.SelectedIndex = 0;
                     }
-            });
+                });
 
         }
 
@@ -251,14 +247,15 @@ namespace Juke_Mobile_Gui
             if (res == System.Windows.Forms.DialogResult.OK && !string.IsNullOrEmpty(fdialog.SelectedPath))
             {
                 DirectoryInfo dinfo = new DirectoryInfo(fdialog.SelectedPath);
-                if(dinfo.Exists){
+                if (dinfo.Exists)
+                {
                     importer.ImportFolder(dinfo);
                 }
             }
         }
 
         private void ImportFile_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             System.Windows.Forms.OpenFileDialog fdialog = new System.Windows.Forms.OpenFileDialog();
             fdialog.Multiselect = true;
             System.Windows.Forms.DialogResult res = fdialog.ShowDialog();
