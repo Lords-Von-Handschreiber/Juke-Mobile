@@ -28,6 +28,14 @@
             <h3 class="muted">Juke-Mobile</h3>
         </div>
 
+        <h2>Datei hochladen</h2>
+
+        <form action="api/FileUpload" enctype="multipart/form-data" method="post">
+            Welche Datei willst du hochladen?
+            <input name="data" type="file" multiple="multiple" /><br />
+            <input type="submit" class="btn" value="Hochladen" />
+        </form>
+
         <hr />
 
         <h2>Die Serverliste durchsuchen</h2>

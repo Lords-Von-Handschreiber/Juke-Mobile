@@ -58,6 +58,7 @@ namespace Juke_Mobile_Gui
         //Event Handling if song stopped.
         void _player_mediaEnded(object sender, EventArgs e)
         {
+            _player.Stop();
             uploadedTracks.RemoveAt(0);
             QueueList.SelectedIndex = 0;
             PlayRequest info = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
