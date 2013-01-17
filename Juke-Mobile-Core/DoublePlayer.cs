@@ -160,7 +160,7 @@ namespace Juke_Mobile_Core
             _progress2.Minimum = 0;
             _progress2.Maximum = _positionPlayer2.TotalSeconds;
 
-            _remaining2.Text = _player2.NaturalDuration.TimeSpan.ToString(_remainingTimeSpanFormat);
+            _remaining2.Text = _positionPlayer2.ToString(_remainingTimeSpanFormat);
         }
 
         /// <summary>
