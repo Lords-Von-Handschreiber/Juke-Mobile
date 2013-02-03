@@ -14,6 +14,12 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<script type="text/javascript">
+    function get_action(form) {
+        url = "api/FileUpload/UploadWithUserName/" + GetUserName();			
+		form.action = url;	
+    }
+	</script>
     <script src="js/modernizr.custom.min.js"></script>
     <script src="js/load.js"></script>
 </head>
@@ -30,7 +36,7 @@
 
         <h2>Datei hochladen</h2>
 
-        <form action="api/FileUpload" enctype="multipart/form-data" method="post" id="fileUploadForm">
+        <form onsubmit="get_action(this);" enctype="multipart/form-data" method="post" id="fileUploadForm">
             Welche Datei willst du hochladen?<br />
             <input name="data" type="file" multiple="multiple" /><br />
             <input type="submit" class="btn" value="Hochladen" />

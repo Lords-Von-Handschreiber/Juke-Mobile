@@ -1,5 +1,6 @@
 ﻿using Juke_Mobile_Model;
 using Juke_Mobile_Model.Database;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,11 @@ namespace Juke_Mobile_Gui.Controllers
             };
         }
 
-        public void Vote(string idMusicInfo, string userName)
+        public void Vote(JObject jsonData)
         {
-
+            dynamic json = jsonData;
+            string idMusicInfo = json.idMusicInfo;
+            string userName = json.userName;
             MusicInfo infotemp = Db.Load<MusicInfo>(idMusicInfo);
             if (infotemp != null)
             {

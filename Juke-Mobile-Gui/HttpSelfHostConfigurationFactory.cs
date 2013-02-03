@@ -27,9 +27,8 @@ namespace Juke_Mobile_Gui
             cfg.ReceiveTimeout = TimeSpan.FromMinutes(20);
 
             cfg.Routes.MapHttpRoute(
-                "API Default", "api/{controller}/{id}",
+                "API Default", "api/{controller}/{action}/{id}",
                 new { id = RouteParameter.Optional });
-
             cfg.Routes.MapHttpRoute(
                 "Default", "{*res}",
                 new { controller = "StaticFile", res = RouteParameter.Optional });

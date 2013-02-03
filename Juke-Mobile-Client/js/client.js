@@ -51,7 +51,7 @@ $(document).ready(function () {
     } else if ($('#list-page').length > 0) {
         $('#playlist').dataTable({
             "sPaginationType": "bootstrap",
-            "sAjaxSource": "/api/Playlist",
+            "sAjaxSource": "/api/Playlist/Get",
             "aoColumns": [
                 { "mData": "Artist" },
                 { "mData": "Title" },
@@ -74,11 +74,11 @@ $(document).ready(function () {
     } else if (!IsUserNameSet()) {
         window.location.href = 'index.html';
     } else if ($('#add-page').length > 0) {
-        $('#myTab a:first').tab('show');
+        $('#myTab a:first').tab('show');								
     } else if ($('#history-page').length > 0) {
         $('#historylist').dataTable({
             "sPaginationType": "bootstrap",
-            "sAjaxSource": "/api/Historylist",
+            "sAjaxSource": "/api/Historylist/Get",
             "aoColumns": [
                 { "mData": "Zeit" },
                 { "mData": "Artist" },
