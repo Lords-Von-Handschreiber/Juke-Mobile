@@ -48,6 +48,18 @@ $(document).ready(function () {
         });
     } else if ($('#error-page').length > 0) {
         //ignore not logged in
+	} else if ($('#info-page').length > 0) {
+        $.ajax({
+            url: "/api/Playlist"
+        }).done(function (o) {
+            if (o) {
+                $('#trackCount').html(o['aaData'].length);
+				if (o['aaData'].length > 0) {
+					$('#nextTitle').html(o['aaData'][0]['Title']);
+					$('#nextArtist').html(o['aaData'][0]['Artist']);
+				}
+            }
+        });
     } else if ($('#list-page').length > 0) {
         $('#playlist').dataTable({
             "sPaginationType": "bootstrap",
