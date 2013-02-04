@@ -66,7 +66,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <ProgressBar Height="10" Name="Player1Progress" MouseLeftButtonUp="Player1Progress_MouseLeftButtonUp"/>
+                <ProgressBar Height="10" Name="Player1Progress" MouseLeftButtonUp="SeekPosition"/>
                 <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player1Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Margin="10">
@@ -77,7 +77,7 @@
             <!-- Player 2 -->
             <StackPanel Grid.Row="1" Grid.Column="2" Margin="10">
                 <TextBlock VerticalAlignment="Top" FontSize="15" FontFamily="OCR A Extended"/>
-                <ProgressBar Height="10" Name="Player2Progress"/>
+                <ProgressBar Height="10" Name="Player2Progress" MouseLeftButtonUp="SeekPosition"/>
                 <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="15" FontFamily="OCR A Extended" Name="Player2Remaining"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" Margin="10">

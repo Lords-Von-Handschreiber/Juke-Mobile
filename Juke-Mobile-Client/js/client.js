@@ -51,7 +51,7 @@ $(document).ready(function () {
     } else if ($('#list-page').length > 0) {
         $('#playlist').dataTable({
             "sPaginationType": "bootstrap",
-            "sAjaxSource": "/api/Playlist/Get",
+            "sAjaxSource": "/api/Playlist",
             "aoColumns": [
                 { "mData": "Artist" },
                 { "mData": "Title" },
@@ -78,7 +78,7 @@ $(document).ready(function () {
     } else if ($('#history-page').length > 0) {
         $('#historylist').dataTable({
             "sPaginationType": "bootstrap",
-            "sAjaxSource": "/api/Historylist/Get",
+            "sAjaxSource": "/api/Historylist",
             "aoColumns": [
                 { "mData": "Zeit" },
                 { "mData": "Artist" },

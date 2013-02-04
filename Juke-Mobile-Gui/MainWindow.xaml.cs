@@ -210,9 +210,11 @@ namespace Juke_Mobile_Gui
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs" /> instance containing the event data.</param>
-        private void Player1Progress_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SeekPosition(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Player1.Position = new TimeSpan(0);
+            ProgressBar bar = (ProgressBar)sender;
+            int newSeconds = (int)(Player1.NaturalDuration.TimeSpan.TotalSeconds * (e.GetPosition(bar).X / bar.ActualWidth));
+            _player.Active.Position = new TimeSpan(0, 0, newSeconds);
         }
 
         /// <summary>

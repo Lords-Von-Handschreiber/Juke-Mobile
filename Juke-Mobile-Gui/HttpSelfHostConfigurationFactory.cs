@@ -28,7 +28,7 @@ namespace Juke_Mobile_Gui
 
             cfg.Routes.MapHttpRoute(
                 "API Default", "api/{controller}/{action}/{id}",
-                new { id = RouteParameter.Optional });
+                new { id = RouteParameter.Optional, action = "Get" });
             cfg.Routes.MapHttpRoute(
                 "Default", "{*res}",
                 new { controller = "StaticFile", res = RouteParameter.Optional });
