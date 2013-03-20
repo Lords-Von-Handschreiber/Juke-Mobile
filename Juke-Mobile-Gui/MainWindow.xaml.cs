@@ -60,15 +60,18 @@ namespace Juke_Mobile_Gui
         {
             _player.Stop();
 
-            uploadedTracks.RemoveAt(0);
-            QueueList.SelectedIndex = 0;
-            PlayRequest info = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
-            PlayRequestManager.MovePlayRequestToHistory(info);
-            PlayRequest req = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
-            if (req != null)
+            if (uploadedTracks.Count != 0)
             {
-                _player.Load(new Uri(req.MusicInfo.PhysicalPath));
-                _player.Play();
+                uploadedTracks.RemoveAt(0);
+                QueueList.SelectedIndex = 0;
+                PlayRequest info = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
+                PlayRequestManager.MovePlayRequestToHistory(info);
+                PlayRequest req = PlayRequestManager.GetNextRequest(PlayRequest.PlayRequestTypeEnum.Queue);
+                if (req != null)
+                {
+                    _player.Load(new Uri(req.MusicInfo.PhysicalPath));
+                    _player.Play();
+                }
             }
         }
 
@@ -136,6 +139,11 @@ namespace Juke_Mobile_Gui
             //MusicInfo mi = (MusicInfo)QueueList.SelectedItem;
             //_player.Load(new Uri(mi.PhysicalPath));
             _player.Play();
+            if (uploadedTracks.Count != 0)
+            {
+                uploadedTracks.RemoveAt(0);
+                QueueList.SelectedIndex = 0;
+            }
         }
 
         /// <summary>
