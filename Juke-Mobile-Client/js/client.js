@@ -90,12 +90,28 @@ $(document).ready(function () {
 		$('#musicinfolist').dataTable({
             "sPaginationType": "bootstrap",
             "sAjaxSource": "/api/MusicInfo",
-            "aoColumns": [                
+            "aoColumns": [   					
                 { "mData": "Artist" },
-                { "mData": "Title" },                
+                { "mData": "Title" },
+				{ "mData": "Id",
+				"mRender": function ( data, type, full ) {
+					return '<button class="btn" type="button" onclick="vote(\''+data+'\')"><i class="icon-plus"></i></button>';
+				}}
             ],
             "bSort": false,
         });
+		$('#musicinfolist button').click(function() {
+			alert('success');
+			var id =  $(this).find("input").value;
+			dataob = new Object()
+			dataob.idMusicInfo = id;
+			dataob.userName = GetUserName();
+			$.ajax({
+			type: "POST",
+			url: "api/MusicInfo/Vote",			
+			data: dataob,
+			});
+		});
     } else if ($('#history-page').length > 0) {
         $('#historylist').dataTable({
             "sPaginationType": "bootstrap",

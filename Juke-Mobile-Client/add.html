@@ -19,6 +19,20 @@
         url = "api/FileUpload/UploadWithUserName/" + GetUserName();			
 		form.action = url;	
     }
+	
+	function vote(id) {	
+		var answer = confirm ("Press Ok to vote for this song. Cancel if you pressed by accident.")
+		if (answer){			
+		dataob = new Object()
+		dataob.idMusicInfo = id;
+		dataob.userName = GetUserName();
+		$.ajax({
+		type: "POST",
+		url: "api/Playlist/Vote",			
+		data: dataob,
+		});
+		}
+	}
 	</script>
     <script src="js/modernizr.custom.min.js"></script>
     <script src="js/load.js"></script>
@@ -64,70 +78,70 @@
         </div>
         <table class="table table-striped table-hover" id="musicinfolist">
             <thead>
-                <tr>
+                <tr>					
                     <th>Artist</th>
                     <th>Titel</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr>						
+                    <td>Klangkarusell</td>
+                    <td>Sonnentanz</td>
+                    <td>
+                        <button class="btn" type="button" onclick="vote()"><i class="icon-plus"></i></button>
+                    </td>
+                </tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
                         <button class="btn" type="button"><i class="icon-plus"></i></button>
                     </td>
                 </tr>
-                <tr>
-                    <td>Klangkarusell</td>
-                    <td>Sonnentanz</td>
-                    <td>
-                        <button class="btn" type="button"><i class="icon-plus"></i></button>
-                    </td>
-                </tr>
-                <tr>
+                <tr>					
                     <td>Klangkarusell</td>
                     <td>Sonnentanz</td>
                     <td>
